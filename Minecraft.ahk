@@ -1,5 +1,266 @@
 :*:10010::100101011010110password10010
 #InstallMouseHook
+^+!l::
+sleep, 100
+while(true){
+sendInput, {2}
+sleep, 50
+sendInput, {Lbutton down}
+sleep, 500
+sendInput, {Lbutton up}
+sleep, 150
+sendInput, {1}
+sleep, 100
+sendInput, {Rbutton}
+sendInput, {d down}
+sleep, 200
+sendInput, {d up}
+keywait, ctrl, D
+keywait, ctrl, U
+sendInput, {Rbutton}
+sleep,400
+mousemove, 578, 275 ,0
+keywait, ctrl, D
+keywait, ctrl, U
+mousemove, 587, 315 ,0
+keywait, ctrl, D
+keywait, ctrl, U
+sendInput, {esc}
+sendInput, {a down}
+sleep, 240
+sendInput, {a up}
+}
+
+return
+^+!2::
+    ; c =1 
+    ; a = 0
+    connection = 0
+    InputBox, res ,, Interfaz de script para AFK (1=left click 2=right click 3=left by Seconds 4= Fishing afk), , , 400, 600, X, Y, , 
+    sleep, 100
+    send, {Esc}
+    Switch res
+    {
+        case 1:
+            while(True){
+                click
+                sleep, 5
+                
+            }
+        Return
+        case 2:
+sleep, 100
+sendInput, {esc}
+            while(True){
+	sendInput, {z}
+sendInput, {Rbutton}
+sleep, 10
+            }
+        Return
+        case 3:
+            InputBox, secs , Cantidad de segundos, , , 250, 150, X, Y, , , 
+            sleep, 100
+            send, {Esc}
+            secs*=1000
+            sgs:=0
+            m:=0
+            v:=0
+            sleep, 500
+            name:= ""
+            p :=False
+            ; Gui, Color, White
+            ; Gui, Add, Progress, vMyProgress w275
+            ; Gui, Font, s9, Verdana
+            ; Gui, Add, Text, vMyText wp  ; wp means "use width of previous".
+            ; Gui, +AlwaysOnTop
+            ; Gui, +Disabled
+            ; Gui, Show, xCenter y21 NA w290, Hi`,` Im a Muffin :D
+            sleep, 500
+            sgs =%secs%
+            v=%sgs%
+            secs/=100
+            while(true){
+                BlockInput, On
+                sleep, 50
+                if not WinActive("ahk_exe javaw.exe"){
+                    WinGet, name, ProcessName, A
+                    WinActivate, ahk_exe javaw.exe
+                    p:=True
+                    sleep, 50
+                    Send, {Esc}
+                    sleep, 50
+                }
+                ; CheckConnection()
+                ; loop, 2{
+                Click, left
+                sleep, 50
+                ; }
+                if(p){
+                    WinActivate, ahk_exe %name%
+                    p:=False
+                }
+                ; sleep, %secs%
+                ; send, {Space}
+                sleep, 20
+                BlockInput,off
+                Loop, 100
+                {
+                    ; m=%sgs%
+                    ; m/=1000
+                    ; GuiControl,, Myprogress, %A_Index%
+                    ; if(m < 10){
+                    ; GuiControl,, MyText, Tiempo restante 0%m%s   Progreso %A_Index% `%`
+                    ; }
+                    ; Else{
+                    ; GuiControl,, MyText, Tiempo restante %m%s   Progreso %A_Index% `%`
+                    ; }
+                    sleep, %secs%
+                    ; sgs-=%secs%
+                    ; if (A_Index == 100)
+                    ; Break
+                }
+                ; send, {Space}
+                ; sleep, %secs%
+                ; sgs=%v%
+                ; if(CheckConnection()){
+                ;     connection++
+                ; }
+                ; GuiControl,, Myprogress, 0
+                ; GuiControl,, MyText, Progreso 0 `%`
+            }
+            sleep, 200
+            send, {Esc}
+        Return
+      case 4:
+      BlockInput, On
+            ; itemkey = 1
+            ; a:= False
+            ; time = 0
+            while(true){
+                sleep, 500
+                    ImageSearch, x, y, 0, 0, 1366, 768, C:\Users\raulh\Pictures\backtogame.png
+                    if(x>0){
+                        send, {esc}
+                    }
+                    ; send, {%itemkey%}
+                ; while(time < 2400000){
+                    ; sleep,10
+                    click, Right
+                    sleep, 250
+                    ; time+=230
+                ; }
+                ; itemkey++
+                ; if(itemkey == 10){
+                ;     a:=true
+                ; }
+                ; time = 0
+                ; sleep, 400
+                ; send, {%itemkey%}
+                ; sleep, 150
+            }
+            BlockInput, Off
+        return
+        case 6:
+            send, {shift Down}
+            while(True){
+                Keywait, RButton, D
+                Keywait, RButton, U
+                click, Right
+                click, Right
+                ; click, Right
+                sleep, 100
+                send, {z}
+                ; send, {shift up}
+                ; sleep, 650
+                ; click, left
+                ;sleep, 15
+            }
+        Return
+        case 7:
+            while(True){
+                click, Right
+                sleep, 3
+            }
+        Return
+        ; case 8:
+        ;     ; while(True){
+        ;     ; send, {Lbutton Down}
+        ;     ; sleep, 3
+        ;     ; }
+            
+        ;     ; x:=39
+        ;     ; y:=71
+        ;     ; z:=3
+        ;     ; pos:= "0 90"
+        ;     ; sleep, 200
+        ;     ; send, {1}
+        ;     ; sleep, 500
+        ;     ; loop, 2{
+        ;     ;     x:=39
+        ;     ;     loop, 2{
+        ;     ;         send, {t}
+        ;     ;         sleep, 200
+        ;     ;         sendInput, /execute in the_end run tp facelessdivine %x% %y% %z% %pos%
+        ;     ;         send, {Enter}
+        ;     ;         sleep, 500
+        ;     ;         send, {Lbutton Down}
+        ;     ;         sleep, 2500*30
+        ;     ;         send, {Lbutton Up}
+        ;     ;         sleep, 500
+        ;     ;         x++
+        ;     ;     }
+        ;     ; repairTool() ; reparar herramienta
+        ;     ;     z--
+        ;     ; }
+        ;     while(true){
+        ;     turnMinecartsSugarCaneFarmOn()
+        ;     ; sleep, 10000
+        ;     sleep, 2000
+        ;     turnSugarCaneFarmOn()
+        ;     sleep, 33000
+        ;     turnMinecartsSugarCaneFarmOn()
+        ;     sleep,4000
+        ;     fishingFarm()
+        ;     }
+            
+        ; Return
+    }
+ ^+a::
+ Keywait, Rbutton, D
+ Keywait, Rbutton, U
+ sleep, 500
+ Mousemove, 764, 410 , 0
+ sendInput, {lbutton}
+ mousemove, 742, 304 , 0
+ sleep, 5
+ sendInput, {Rbutton down}
+ mousemove, 749, 343 ,2
+ mousemove, 815, 345 ,2
+ mousemove, 816, 307 ,2
+ sendInput, {Rbutton up}
+ mousemove, 932, 300, 3
+ sendInput, +{Lbutton}
+ Mousemove, 764, 410 , 0
+ click
+ send, {esc}
+ return
+ 
+^+w::
+sleep, 1000
+sendInput, {w down}
+sendInput, {Lcontrol down}
+sendInput, {Lbutton down}
+; send, {c down}
+return
+Mbutton::
+if winactive("ahk_exe brave.exe"){
+    send, ^{w}
+}else  if winactive("ahk_exe javaw.exe"){
+send, {z}	
+}else {
+send, !{f4}
+}
+return
 ^+!0::
     send, {t}
     
