@@ -1,3 +1,183 @@
+^numpad9::
+keywait, Rbutton, D
+keywait, Rbutton, U
+sleep, 150
+c = 35
+startx = 835
+starty = 335
+speed = 1
+blockinput, on
+sendInput, {ctrl down}
+loop, 9{
+mousemove, startx, starty , speed
+sendInput, {q}
+if(A_Index ==9){
+startx+=c
+}
+startx-=c
+}
+starty-=c
+mousemove, startx, starty , speed
+sendInput, {q}
+loop, 9{
+mousemove, startx, starty , speed
+sendInput, {q}
+if(A_Index ==9){
+startx-=c
+}
+startx+=c
+}
+starty-=c
+mousemove, startx, starty , speed
+sendInput, {q}
+loop, 9{
+mousemove, startx, starty , speed
+sendInput, {q}
+startx-=c
+}
+sleep, 50
+blockinput, off
+sendInput, {ctrl up}
+sendInput, {esc}
+Return
+Rcontrol & Space::
+sendInput, {t}
+sleep, 120
+sendInput, /msg P0tato {space}
+return
+^numpad1::
+sleep, 250
+InputBox, c2 ,Cerrar?, , , 200, 200, X, Y, Font, 
+if(c2 == 1){
+WinGet mc_pid, PID, A
+process close, %mc_pid%   
+; msgbox
+}
+mc:="ahk_exe javaw.exe"
+if WinExist(mc) {
+    if(!WinActive(mc)) {
+        WinActivate
+        }
+    }
+Keywait, ctrl, D
+Keywait, ctrl, U
+mousemove, 1194, 726 ,0 ;Desconectarse
+click, left
+sleep, 200
+mousemove, 1209, 623,0 ;combo box cuentas
+click
+sleep, 100
+mousemove, 1186, 652,0 ;click a Launcherfenix
+click
+sleep, 100
+mousemove, 1250, 647 ,0 ;Click al input de email
+click, left
+sleep, 50
+sendInput, facelessdivine@gmail.com
+sendInput,{tab}
+sleep, 50
+sendInput, 100101011010110password10010
+sleep, 10
+mousemove, 1297, 722 , 0 ;click en conectarse
+click
+sleep, 1000
+click ;Iniciar juego
+Return
+
+^numpad2::
+usuario:=""
+usernames:= ["Alejandra_h","Daniela777","FireStorm","Storm_Shadow","StarBreaker","WorldInFire","TheSevenFold", "Luis_CR", "WorldWideFuck"]
+InputBox, user , user gui,1-Alejandra_h 2-Daniela777 3-FireStorm 4-Storm_Shadow 5-StarBreaker 6- WorldInFire 7- TheSevenFold 8- Luis_CR, 9- WorldWideFuck, , 500, 300, X, Y, Font,
+
+        usuario := usernames[user]
+
+sleep, 300
+; sendInput, {esc}
+; sleep, 120
+; sendInput, {tab 7}
+; sleep, 50
+; sendInput, {enter}
+d = 0
+InputBox,d ,Cerrar?, , , 200, 200, X, Y, Font, 
+if(d == 1){
+WinGet mc_pid, PID, A
+process close, %mc_pid%   
+}
+mc:="ahk_exe javaw.exe"
+if WinExist(mc) {
+    if(!WinActive(mc)) {
+        WinActivate
+        }
+    }
+Keywait, ctrl, D
+Keywait, ctrl, U
+mousemove, 1194, 726 ,0 ;Desconectarse
+click, left
+sleep, 200
+mousemove, 1209, 623,0 ;combo box cuentas
+click
+mousemove, 1196, 642 ,0 ;selecciona noPremium
+click
+mousemove, 1250, 647 ,0 ;Click al input de email
+click, left
+sendInput, %usuario%
+sleep, 50
+mousemove, 1297, 722 , 0 ;click en conectarse
+click
+sleep, 500
+click ;Iniciar juego
+Return
+f1::
+sendInput, {t}
+sleep, 120
+sendInput, /login Password44 {enter}
+sleep, 1200
+sendInput, {rbutton}
+sleep, 1200
+mousemove, 617, 258 ,0
+click
+sleep, 200
+mousemove, 770, 307 ,0
+sleep, 100
+click
+return
+f2::
+sendInput, {t}
+sleep, 120
+sendInput, /register Password44 {enter}
+return
+^+!5::
+sleep, 1000
+sendInput, {shift down}
+sleep, 400
+sendInput, {s down}
+sendInput, {Rbutton down}
+while(true)
+{
+    sendInput, {z}
+    sleep, 1000
+}
+return
+^+!4::
+; sleep, 5
+; sendInput, {esc}
+sleep, 100
+send, {t}
+    sleep, 50
+    sendinput, /spawn
+    sleep, 50
+    send, {enter}
+return
+^+!7::
+; sleep, 5
+; sendInput, {esc}
+sleep, 100
+send, {t}
+    sleep, 50
+    sendinput, /back
+    sleep, 50
+    send, {enter}
+return
 :*:10010::100101011010110password10010
 #InstallMouseHook
 ^+!l::
@@ -32,199 +212,7 @@ sendInput, {a up}
 }
 
 return
-^+!2::
-    ; c =1 
-    ; a = 0
-    connection = 0
-    InputBox, res ,, Interfaz de script para AFK (1=left click 2=right click 3=left by Seconds 4= Fishing afk), , , 400, 600, X, Y, , 
-    sleep, 100
-    send, {Esc}
-    Switch res
-    {
-        case 1:
-            while(True){
-                click
-                sleep, 5
-                
-            }
-        Return
-        case 2:
-sleep, 100
-sendInput, {esc}
-            while(True){
-	sendInput, {z}
-sendInput, {Rbutton}
-sleep, 10
-            }
-        Return
-        case 3:
-            InputBox, secs , Cantidad de segundos, , , 250, 150, X, Y, , , 
-            sleep, 100
-            send, {Esc}
-            secs*=1000
-            sgs:=0
-            m:=0
-            v:=0
-            sleep, 500
-            name:= ""
-            p :=False
-            ; Gui, Color, White
-            ; Gui, Add, Progress, vMyProgress w275
-            ; Gui, Font, s9, Verdana
-            ; Gui, Add, Text, vMyText wp  ; wp means "use width of previous".
-            ; Gui, +AlwaysOnTop
-            ; Gui, +Disabled
-            ; Gui, Show, xCenter y21 NA w290, Hi`,` Im a Muffin :D
-            sleep, 500
-            sgs =%secs%
-            v=%sgs%
-            secs/=100
-            while(true){
-                BlockInput, On
-                sleep, 50
-                if not WinActive("ahk_exe javaw.exe"){
-                    WinGet, name, ProcessName, A
-                    WinActivate, ahk_exe javaw.exe
-                    p:=True
-                    sleep, 50
-                    Send, {Esc}
-                    sleep, 50
-                }
-                ; CheckConnection()
-                ; loop, 2{
-                Click, left
-                sleep, 50
-                ; }
-                if(p){
-                    WinActivate, ahk_exe %name%
-                    p:=False
-                }
-                ; sleep, %secs%
-                ; send, {Space}
-                sleep, 20
-                BlockInput,off
-                Loop, 100
-                {
-                    ; m=%sgs%
-                    ; m/=1000
-                    ; GuiControl,, Myprogress, %A_Index%
-                    ; if(m < 10){
-                    ; GuiControl,, MyText, Tiempo restante 0%m%s   Progreso %A_Index% `%`
-                    ; }
-                    ; Else{
-                    ; GuiControl,, MyText, Tiempo restante %m%s   Progreso %A_Index% `%`
-                    ; }
-                    sleep, %secs%
-                    ; sgs-=%secs%
-                    ; if (A_Index == 100)
-                    ; Break
-                }
-                ; send, {Space}
-                ; sleep, %secs%
-                ; sgs=%v%
-                ; if(CheckConnection()){
-                ;     connection++
-                ; }
-                ; GuiControl,, Myprogress, 0
-                ; GuiControl,, MyText, Progreso 0 `%`
-            }
-            sleep, 200
-            send, {Esc}
-        Return
-      case 4:
-      BlockInput, On
-            ; itemkey = 1
-            ; a:= False
-            ; time = 0
-            while(true){
-                sleep, 500
-                    ImageSearch, x, y, 0, 0, 1366, 768, C:\Users\raulh\Pictures\backtogame.png
-                    if(x>0){
-                        send, {esc}
-                    }
-                    ; send, {%itemkey%}
-                ; while(time < 2400000){
-                    ; sleep,10
-                    click, Right
-                    sleep, 250
-                    ; time+=230
-                ; }
-                ; itemkey++
-                ; if(itemkey == 10){
-                ;     a:=true
-                ; }
-                ; time = 0
-                ; sleep, 400
-                ; send, {%itemkey%}
-                ; sleep, 150
-            }
-            BlockInput, Off
-        return
-        case 6:
-            send, {shift Down}
-            while(True){
-                Keywait, RButton, D
-                Keywait, RButton, U
-                click, Right
-                click, Right
-                ; click, Right
-                sleep, 100
-                send, {z}
-                ; send, {shift up}
-                ; sleep, 650
-                ; click, left
-                ;sleep, 15
-            }
-        Return
-        case 7:
-            while(True){
-                click, Right
-                sleep, 3
-            }
-        Return
-        ; case 8:
-        ;     ; while(True){
-        ;     ; send, {Lbutton Down}
-        ;     ; sleep, 3
-        ;     ; }
-            
-        ;     ; x:=39
-        ;     ; y:=71
-        ;     ; z:=3
-        ;     ; pos:= "0 90"
-        ;     ; sleep, 200
-        ;     ; send, {1}
-        ;     ; sleep, 500
-        ;     ; loop, 2{
-        ;     ;     x:=39
-        ;     ;     loop, 2{
-        ;     ;         send, {t}
-        ;     ;         sleep, 200
-        ;     ;         sendInput, /execute in the_end run tp facelessdivine %x% %y% %z% %pos%
-        ;     ;         send, {Enter}
-        ;     ;         sleep, 500
-        ;     ;         send, {Lbutton Down}
-        ;     ;         sleep, 2500*30
-        ;     ;         send, {Lbutton Up}
-        ;     ;         sleep, 500
-        ;     ;         x++
-        ;     ;     }
-        ;     ; repairTool() ; reparar herramienta
-        ;     ;     z--
-        ;     ; }
-        ;     while(true){
-        ;     turnMinecartsSugarCaneFarmOn()
-        ;     ; sleep, 10000
-        ;     sleep, 2000
-        ;     turnSugarCaneFarmOn()
-        ;     sleep, 33000
-        ;     turnMinecartsSugarCaneFarmOn()
-        ;     sleep,4000
-        ;     fishingFarm()
-        ;     }
-            
-        ; Return
-    }
+
  ^+a::
  Keywait, Rbutton, D
  Keywait, Rbutton, U
@@ -381,7 +369,7 @@ mine02(){
     send, {w up}
 Return
 }
-^+XButton1::
+^+!3::
     tpinterface()
 Return
 
@@ -401,7 +389,13 @@ return Str
     send, {Enter}
 Return
 ^+!r::
-    
+    ; sendInput, {ctrl down}
+    ; sendInput, {ctrl up}
+    ; sleep, 30
+    ; ; sendInput, {rbutton up}
+    ; sendInput, {lbutton down}
+    ; sendInput, {lbutton up}
+    ; ; sendInput, {shift up}
     Reload
 Return
 SwitchItem()
@@ -422,13 +416,6 @@ SwitchItem()
         }
     }
 }
-^+a::
-    while(True){
-        MsgBox,0,CONNECTION, The connection to the server has been restared > %connection% times
-        sleep, 500
-    }
-Return
-
 ^+XButton2::
     sleep, 100
     send, {ctrl Down}
@@ -463,14 +450,34 @@ Return
         Return
         case 2:
             while(True){
-                ; click, Right
-                fishingFarm()
+        sendInput, {shift down}
+;                 sleep, 100
+                 sendInput, {Rbutton}
+
+sleep, 10
+                 sendInput, {z}
+; sleep, 200
+; Keywait, Rbutton, D
+; Keywait, Rbutton, U
+; sendInput, {rbutton 3}
+
+
+                ;fishingFarm()
                 
                 ; click, left
                 ; CheckConnection()
             }
         Return
         case 3:
+ sleep, 100
+sendInput, {esc}
+ sleep, 100
+
+while(true){
+sendInput, {Lbutton}
+sendInput, {Rbutton down}
+sleep, 700
+}
             InputBox, secs , Cantidad de segundos, , , 250, 150, X, Y, , , 
             sleep, 100
             send, {Esc}
@@ -631,6 +638,407 @@ Return
             }
             
         Return
+        case 9:
+        InputBox, n , cantidad de vueltas a granja de mobs, ,, 200,200, X, Y, Font,
+            mobsfarm(n,false)
+            return
+            case 10:
+            InputBox, n , Cantida de veces que correra, Message, HIDE, 400, 200, X, Y, Font, 
+                sleep, 100
+                sendInput, {esc}
+                sleep, 1000
+                sleep, 100
+                sendInput, {t}
+                sleep, 150
+                sendInput, /homes farm
+                sendInput, {enter}
+                sleep, 12001
+                c=0
+                contador:=0
+                cantidad = 71
+                item = 5
+                while(true){
+                    contador++
+                    sendInput, {1}
+                    sleep, 400
+                    sendInput, {rbutton down}
+                    sleep, 2000
+                    sendInput, {rbutton up}
+                    sendInput, {2}
+                    sendInput, {ctrl down}
+                    sendInput, {w down}
+                    sleep, 15000
+                    sendInput, {w up}
+                    sendInput, {ctrl up}
+                    sendInput, {t}
+                    sleep, 150
+                    sendInput, /homes farm
+                    sendInput, {enter}
+                    sleep, 150
+                    ; sleep, 100
+                    if(contador == cantidad){
+
+                        sendInput, {ctrl up}
+                        sendInput, {rbutton up}
+                        sleep, 2300
+                        mobsfarm(30,true) 
+                        contador = 0
+                        c++
+                        if(c==n){
+                            MsgBox, 4,, Would you like to continue? (press Yes or No), 30
+                            IfMsgBox Yes
+                            {
+                                WinGet mc_pid, PID, A
+                                process close, %mc_pid%
+                            }
+                            IfMsgBox No
+                                {
+                                    sendInput, {t}
+                                    sleep, 150
+                                    sendInput, /homes farm
+                                    sendInput, {enter}
+                                    return
+                                }
+                            IfMsgBox Timeout
+                            {
+                                WinGet mc_pid, PID, A
+                                process close, %mc_pid%
+                            }
+                        }   
+                    }
+                }
+                 Return   
+            case 11:
+            ; InputBox, lines , lineas  a Plantar, , , 200, 200, X, Y, Font, 
+            sleep, 100
+            sendInput, {esc}
+            sleep, 100
+            slip = 538
+            lines = 15
+            ; slip2 = 458
+            slip2 = 437
+            loop, %lines%{
+                ; sendInput, {7}
+                sendInput, {z}
+                sleep, 100
+                if(A_Index == 1){
+                    sendInput, {8}
+                    sleep, 400
+                    sendInput, {f}
+                    sleep, 400
+                    sendInput, {z}
+                    sleep, 400
+                    sendInput, {f}
+
+                }
+            sendInput, {ctrl down}
+            ; sendInput, {rbutton down}
+            sendInput, {w down}
+            ; sleep, 7970
+            ; loop, 490{
+            loop, 120{
+                sendInput, {z}
+                ; sendInput, {z}
+                sendInput, {rbutton}
+                sendInput, {z}
+                ; sleep, 16
+                sleep, 70
+            }
+            sendInput, {w up}
+            ; sendInput, {rbutton up}
+            sendInput, {ctrl up}
+           
+            sendInput, {1}
+            ; sleep, 80
+            sendInput, {rbutton down }
+            sleep, 2000
+            sendInput, {rbutton up}
+             sleep, 50
+            sendInput, {shift down}
+            if(A_Index == 1){
+            sendInput, {a down}
+            sleep, %slip%
+            sendInput, {a up}
+            }
+            else{
+            sendInput, {a down}
+            sleep, %slip2%
+            sendInput, {a up}
+            }
+            sleep, 100
+            sendInput, {shift up}
+            sendInput, {8}
+            sleep, 50
+            sendInput, {z}
+            ; sendInput, {rbutton down}
+            sendInput, {s down}
+            ; sleep, 10350
+            ; loop, 390{
+            loop, 150{
+                ; sendInput, {z}
+                sendInput, {z}
+                sendInput, {rbutton}
+                sendInput, {z}
+                ; sleep, 21
+                sleep, 71
+
+            }
+            sendInput, {s up}
+            ; sendInput, {rbutton up}
+            sendInput, {ctrl up}
+            sleep, 100
+            sendInput, {shift down}
+            sendInput, {a down}
+            sleep, %slip2%
+            sendInput, {a up}
+            sleep, 800
+            sendInput, {shift up}
+            ; sendInput, {8}
+            ; sleep, 100
+            sendInput, {rbutton down }
+            sleep, 2000
+            sendInput, {rbutton up}
+            sleep, 10
+            ; sendInput, {z}
+            sendInput, {z}
+            ; sendInput, {z}
+                }    
+                sendInput, {8}
+                sleep, 400
+                sendInput, {f}
+                
+            return
+            case 12:
+            InputBox, lines , lineas  a Plantar, , , 200, 200, X, Y, Font, 
+            sleep, 100
+            sendInput, {esc}
+            sleep, 100
+            slip = 538
+            ; slip2 = 458
+            slip2 = 438
+            loop, %lines%{
+                ; sendInput, {1}
+                sleep, 10
+            sendInput, {ctrl down}
+            ; sendInput, {rbutton down}
+            sendInput, {w down}
+            ; sleep, 7970
+            ; loop, 490{
+            loop, 280{
+                sendInput, {rbutton}
+                sendInput, {z}
+                ; sleep, 16
+                sleep, 22
+            }
+            sendInput, {w up}
+            ; sendInput, {rbutton up}
+            sendInput, {ctrl up}
+            sleep, 100
+            sendInput, {shift down}
+            if(A_Index == 1){
+            sendInput, {a down}
+            sleep, %slip%
+            sendInput, {a up}
+            }
+            else{
+            sendInput, {a down}
+            sleep, %slip2%
+            sendInput, {a up}
+            }
+            sleep, 800
+            sendInput, {shift up}
+            sendInput, {8}
+            ; sleep, 80
+            sendInput, {rbutton down }
+            sleep, 2000
+            sendInput, {rbutton up}
+            sleep, 10
+            ; sendInput, {1}
+            ; sendInput, {rbutton down}
+            sendInput, {s down}
+            ; sleep, 10350
+            ; loop, 390{
+            loop, 320{
+                sendInput, {rbutton}
+                sendInput, {z}
+                ; sleep, 21
+                sleep, 27
+
+            }
+            sendInput, {s up}
+            ; sendInput, {rbutton up}
+            sendInput, {ctrl up}
+            sleep, 100
+            sendInput, {shift down}
+            sendInput, {a down}
+            sleep, %slip2%
+            sendInput, {a up}
+            sleep, 800
+            sendInput, {shift up}
+            sendInput, {8}
+            ; sleep, 100
+            sendInput, {rbutton down }
+            sleep, 2000
+            sendInput, {rbutton up}
+            sleep, 10
+            sendInput, {z}
+            ; sendInput, {1}
+            }
+            return
+            case 13: 
+            InputBox, lines , lineas  a cultivar, , , 200, 200, X, Y, Font, 
+            sleep, 100
+            sendInput, {esc}
+            sleep, 100
+            slip = 538
+            ; slip2 = 458
+            slip2 = 438
+            loop, %lines%{
+                sendInput, {1}
+                sleep, 10
+            sendInput, {ctrl down}
+            ; sendInput, {rbutton down}
+            sendInput, {w down}
+            ; sleep, 7970
+            ; loop, 490{
+            loop, 280{
+                sendInput, {lbutton}
+                ; sendInput, {z}
+                ; sleep, 16
+                sleep, 22
+            }
+            sendInput, {w up}
+            ; sendInput, {rbutton up}
+            sendInput, {ctrl up}
+            sleep, 100
+            sendInput, {shift down}
+            if(A_Index == 1){
+            sendInput, {a down}
+            sleep, %slip%
+            sendInput, {a up}
+            }
+            else{
+            sendInput, {a down}
+            sleep, %slip2%
+            sendInput, {a up}
+            }
+            sleep, 800
+            sendInput, {shift up}
+            sendInput, {8}
+            ; sleep, 80
+            sendInput, {rbutton down }
+            sleep, 2000
+            sendInput, {rbutton up}
+            sleep, 10
+            sendInput, {1}
+            ; sendInput, {rbutton down}
+            sendInput, {s down}
+            ; sleep, 10350
+            ; loop, 390{
+            loop, 320{
+                sendInput, {lbutton}
+                ; sendInput, {z}
+                ; sleep, 21
+                sleep, 27
+
+            }
+            sendInput, {s up}
+            ; sendInput, {rbutton up}
+            sendInput, {ctrl up}
+            sleep, 100
+            sendInput, {shift down}
+            sendInput, {a down}
+            sleep, %slip2%
+            sendInput, {a up}
+            sleep, 800
+            sendInput, {shift up}
+            sendInput, {8}
+            ; sleep, 100
+            sendInput, {rbutton down }
+            sleep, 2000
+            sendInput, {rbutton up}
+            sleep, 10
+            ; sendInput, {z}
+            sendInput, {1}
+            }
+            return
+            case 14: 
+            InputBox, lines , lineas  a arar, , , 200, 200, X, Y, Font, 
+            sleep, 100
+            sendInput, {esc}
+            sleep, 100
+            slip = 538
+            ; slip2 = 458
+            slip2 = 438
+            loop, %lines%{
+                sendInput, {1}
+                sleep, 10
+            sendInput, {ctrl down}
+            ; sendInput, {rbutton down}
+            sendInput, {w down}
+            ; sleep, 7970
+            ; loop, 490{
+            loop, 130{
+                sendInput, {rbutton}
+                ; sendInput, {z}
+                ; sleep, 16
+                sleep, 70
+            }
+            sendInput, {w up}
+            ; sendInput, {rbutton up}
+            sendInput, {ctrl up}
+           
+            sendInput, {8}
+            ; sleep, 80
+            sendInput, {rbutton down }
+            sleep, 2000
+            sendInput, {rbutton up}
+             sleep, 50
+            sendInput, {shift down}
+            if(A_Index == 1){
+            sendInput, {a down}
+            sleep, %slip%
+            sendInput, {a up}
+            }
+            else{
+            sendInput, {a down}
+            sleep, %slip2%
+            sendInput, {a up}
+            }
+            sleep, 100
+            sendInput, {shift up}
+            sendInput, {1}
+            ; sendInput, {rbutton down}
+            sendInput, {s down}
+            ; sleep, 10350
+            ; loop, 390{
+            loop, 162{
+                sendInput, {rbutton}
+                ; sendInput, {z}
+                ; sleep, 21
+                sleep, 71
+
+            }
+            sendInput, {s up}
+            ; sendInput, {rbutton up}
+            sendInput, {ctrl up}
+            sleep, 100
+            sendInput, {shift down}
+            sendInput, {a down}
+            sleep, %slip2%
+            sendInput, {a up}
+            sleep, 800
+            sendInput, {shift up}
+            sendInput, {8}
+            ; sleep, 100
+            sendInput, {rbutton down }
+            sleep, 2000
+            sendInput, {rbutton up}
+            sleep, 10
+            ; sendInput, {z}
+            sendInput, {1}
+            }
+return
     }
     
     repairTool(){
@@ -741,24 +1149,24 @@ Return
         send, {Enter}
         blockinput, off
     }
-    ^+!l::
-        send, {t}
-        sleep, 200
-        SendInput, /execute in overworld run tp P0tato__ -252 138 13 90 19
-        send, {Enter}
-    Return
-    ^+!o::
-        send, {t}
-        sleep, 200
-        SendInput, /tp P0tato__ facelessdivine
-        send, {Enter}
-    Return
-    ^+!p::
-        send, {t}
-        sleep, 200
-        SendInput, /tp facelessdivine P0tato__
-        send, {Enter}
-    Return
+    ; ^+!l::
+    ;     send, {t}
+    ;     sleep, 200
+    ;     SendInput, /execute in overworld run tp P0tato__ -252 138 13 90 19
+    ;     send, {Enter}
+    ; Return
+    ; ^+!o::
+    ;     send, {t}
+    ;     sleep, 200
+    ;     SendInput, /tp P0tato__ facelessdivine
+    ;     send, {Enter}
+    ; Return
+    ; ^+!p::
+    ;     send, {t}
+    ;     sleep, 200
+    ;     SendInput, /tp facelessdivine P0tato__
+    ;     send, {Enter}
+    ; Return
     ^!2::
         while(true)
         {
@@ -776,7 +1184,7 @@ Return
         }
     Return
     
-    tpinterface(){
+    tpinterface(op:=0){
         cnames:=[]
         coords:=[]
         dimensions:=[]
@@ -788,9 +1196,9 @@ Return
         cnames := StrSplit(names, ",")
         coords := StrSplit(cords, ",")
         dimensions := StrSplit(dimensionss, ",")
-        
-        op = -1
+        if(op==0){
         InputBox, op , Introducir, 1./ Insert `n`n 2./ Delete `n`n 3./ exit `n`n 4./ Query, , 300, 275, X, Y, , ,4
+        }
         Switch op{
             case 1:
                 InputBox, cname , Nombre de la coordenada, , , 400, 200, X, Y, , ,
@@ -863,14 +1271,21 @@ Return
                 }
                 strMenu := StrReplace(strMenu, "|","`n`n")
                 if(cnames.Length() > 0){
-                    InputBox, index , Selecciona una opcion del menu, %strMenu%, , 350,120+40*cnames.Length() , X, Y, , , 
+                    InputBox, index , Selecciona una opcion del menu, %strMenu%, , 350,300+40*cnames.Length() , X, Y, , , 
+                    if(index > cnames.Length()){
+                        msgbox, Opcion invalida
+                        tpinterface(4)
+                    }
                     var:= coords[index]
                     var2:= dimensions[index]
+                    var3:= cnames[index]
                     c:= StrReplace(var, "."," ")
                     d:= StrReplace(var2, "."," ")
-                    Clipboard:= "/execute in " d " run tp facelessdivine "c
-                    sleep,50
-                    send, {Esc}
+                    n:= StrReplace(var3, "."," ")
+                    ; Clipboard:= ">>> " d " >>> "c
+                    Clipboard:= ">>> " n " >>> "c
+                    ; sleep,50
+                    ; send, {Esc}
                     sleep, 110
                     send, {t}
                     sleep, 40
@@ -879,8 +1294,9 @@ Return
                 }
                 else{
                     MsgBox, 0, Warn, No hay dato guardados,2
+                tpinterface()
                 }
-                ; tpinterface()
+                op:=0
             Return
             Default:
                 tpinterface()
@@ -888,4 +1304,72 @@ Return
             
             Return 
         }
-        
+        mobsfarm(number, bol){
+            contador:=0
+            contador2:=0
+            tele = 25
+            if(!bol){
+            sleep, 100
+            sendInput, {esc}
+            sleep, 150
+            }
+            sendInput, {t}
+            sleep, 150
+            sendInput, /homes x ;granja de experiencia mobs para reparar las botas
+            sendInput, {enter}
+            sleep, 1200
+            while(true){
+                sleep, 200
+                sendInput, {2}
+                contador++
+                contador2++
+                sendInput, {Ctrl down}
+                sendInput, {w down}
+                sleep, 1400
+                sendInput, {w up}
+                sendInput, {d down}
+                sleep, 30
+                sendInput, {d up}
+                sendInput, {Lbutton}
+                sendInput, {s down}
+                sendInput, {d down}
+                sleep, 30
+                sendInput, {d up}
+                sleep, 2200
+                sendInput, {s up}
+                sendInput, {Lbutton}
+                sleep, 800
+                sendInput, {Lbutton}
+                sendInput, {ctrl up}
+                sendInput, {1}
+                sendInput, {Rbutton down}
+                sleep, 2000
+                sendInput, {Rbutton up}
+                sendInput, {2}
+                sendInput, {a down}
+                sleep, 300
+                sendInput, {a up}
+                sleep, 800
+                if(contador == number){
+                    sendInput, {ctrl up}
+                    sleep, 100
+                    sendInput, {t}
+                    sleep, 150
+                    sendInput, /homes farm
+                    sendInput, {enter}
+                    sleep, 2100
+                    break
+                }
+                if(contador2 == tele){
+                    sendInput, {ctrl up}
+                    sleep, 100
+                    sendInput, {t}
+                    sleep, 150
+                    sendInput, /homes x
+                    sendInput, {enter}
+                    sleep, 2100
+                    contador2 = 0
+                }
+
+            }
+}        
