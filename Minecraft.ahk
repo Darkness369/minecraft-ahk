@@ -1,3 +1,63 @@
+
+::rmm::
+sleep, 400
+usernames:= ["Alejandra_h","Daniela777","FireStorm","Storm_Shadow","StarBreaker","WorldInFire","TheSevenFold", "Luis_CR", "WorldWideFuck"]
+for index, elemento in usernames{
+    sendInput, {t}
+    sleep, 300
+    sendInput, /ps add %elemento% {enter}
+    sleep, 5000
+}
+return
+; :*:dl::
+; sortItems()
+; return
+^numpad3::
+sendInput, {Rbutton down}
+sendInput, {Lbutton down}
+return
+:*:mision::
+sendInput, {t}
+sleep, 120
+sendInput, /mision
+sendInput, {enter}
+sleep, 800
+mousemove, 692, 339 , 0
+sleep, 100
+sendInput, {lbutton}
+return
+^numpad4::
+while(true){
+    sendInput, {shift down}
+Keywait, Rbutton, D
+Keywait, Rbutton, U
+sendInput, {z}
+loop, 3
+{
+send, {rbutton}
+sleep, 2
+}
+
+}
+Return
+^numpad8::
+voteSites := ["http://topminecraftservers.org/vote/21165","https://topg.org/minecraft-servers/server-631211","https://minecraftservers.org/server/627843","https://minecraft-mp.com/server/296226/vote/","https://servidoresdeminecraft.es/server/status/QKMQu04z/supercraft.es","https://www.40servidoresmc.es/supercraft-votar"]
+SendInput, {Ctrl down}{shift down}{n}{Ctrl up}{shift up}
+sleep, 2000
+sendInput, ^{d}
+for index, element in voteSites ; Enumeration is the recommended approach in most cases.
+{
+    clipboard := element
+    sendInput, ^{v}
+    sendInput, {enter}
+    sleep, 1000
+    if(A_Index != 6){
+        sendInput, ^{t}
+    }
+    sleep, 1000
+}
+; sendInput, ^{w}
+return
 ^numpad9::
 keywait, Rbutton, D
 keywait, Rbutton, U
@@ -48,6 +108,7 @@ return
 ^numpad1::
 sleep, 250
 InputBox, c2 ,Cerrar?, , , 200, 200, X, Y, Font, 
+sleep, 1200
 if(c2 == 1){
 WinGet mc_pid, PID, A
 process close, %mc_pid%   
@@ -75,9 +136,9 @@ click, left
 sleep, 50
 sendInput, facelessdivine@gmail.com
 sendInput,{tab}
-sleep, 50
+sleep, 100
 sendInput, 100101011010110password10010
-sleep, 10
+sleep, 100
 mousemove, 1297, 722 , 0 ;click en conectarse
 click
 sleep, 1000
@@ -87,7 +148,7 @@ Return
 ^numpad2::
 usuario:=""
 usernames:= ["Alejandra_h","Daniela777","FireStorm","Storm_Shadow","StarBreaker","WorldInFire","TheSevenFold", "Luis_CR", "WorldWideFuck"]
-InputBox, user , user gui,1-Alejandra_h 2-Daniela777 3-FireStorm 4-Storm_Shadow 5-StarBreaker 6- WorldInFire 7- TheSevenFold 8- Luis_CR, 9- WorldWideFuck, , 500, 300, X, Y, Font,
+InputBox, user , user gui,1-Alejandra_h 2-Daniela777 3-FireStorm 4-Storm_Shadow 5-StarBreaker 6- WorldInFire 7- TheSevenFold 8- Luis_CR, 9- WorldWideFuck, , 400, 100, X, Y, Font,
 
         usuario := usernames[user]
 
@@ -99,6 +160,7 @@ sleep, 300
 ; sendInput, {enter}
 d = 0
 InputBox,d ,Cerrar?, , , 200, 200, X, Y, Font, 
+sleep, 1200
 if(d == 1){
 WinGet mc_pid, PID, A
 process close, %mc_pid%   
@@ -444,7 +506,7 @@ Return
         case 1:
             while(True){
                 click
-                sleep, 5
+                sleep, 150
                 
             }
         Return
@@ -643,7 +705,7 @@ sleep, 700
             mobsfarm(n,false)
             return
             case 10:
-            InputBox, n , Cantida de veces que correra, Message, HIDE, 400, 200, X, Y, Font, 
+            InputBox, n , Vueltas, This is a mesage, HIDE, 400, 200, X, Y, Font, 
                 sleep, 100
                 sendInput, {esc}
                 sleep, 1000
@@ -652,11 +714,11 @@ sleep, 700
                 sleep, 150
                 sendInput, /homes farm
                 sendInput, {enter}
-                sleep, 12001
+                sleep, 1201
                 c=0
                 contador:=0
-                cantidad = 71
-                item = 5
+                cantidad = 50
+                item = 1
                 while(true){
                     contador++
                     sendInput, {1}
@@ -681,11 +743,16 @@ sleep, 700
                         sendInput, {ctrl up}
                         sendInput, {rbutton up}
                         sleep, 2300
-                        mobsfarm(30,true) 
+                        mobsfarm(25,true) 
+                        sleep, 200
+                        growPlants(31)
+                        sleep, 200
+                        plant(31)
+                        sleep, 200
                         contador = 0
                         c++
                         if(c==n){
-                            MsgBox, 4,, Would you like to continue? (press Yes or No), 30
+                            MsgBox, 4,, Would you like to close?, 30
                             IfMsgBox Yes
                             {
                                 WinGet mc_pid, PID, A
@@ -709,258 +776,18 @@ sleep, 700
                 }
                  Return   
             case 11:
-            ; InputBox, lines , lineas  a Plantar, , , 200, 200, X, Y, Font, 
+            InputBox, l ,plant,, HIDE, Width, Height, 400, 150, Font, 
             sleep, 100
             sendInput, {esc}
-            sleep, 100
-            slip = 538
-            lines = 15
-            ; slip2 = 458
-            slip2 = 437
-            loop, %lines%{
-                ; sendInput, {7}
-                sendInput, {z}
-                sleep, 100
-                if(A_Index == 1){
-                    sendInput, {8}
-                    sleep, 400
-                    sendInput, {f}
-                    sleep, 400
-                    sendInput, {z}
-                    sleep, 400
-                    sendInput, {f}
-
-                }
-            sendInput, {ctrl down}
-            ; sendInput, {rbutton down}
-            sendInput, {w down}
-            ; sleep, 7970
-            ; loop, 490{
-            loop, 120{
-                sendInput, {z}
-                ; sendInput, {z}
-                sendInput, {rbutton}
-                sendInput, {z}
-                ; sleep, 16
-                sleep, 70
-            }
-            sendInput, {w up}
-            ; sendInput, {rbutton up}
-            sendInput, {ctrl up}
-           
-            sendInput, {1}
-            ; sleep, 80
-            sendInput, {rbutton down }
-            sleep, 2000
-            sendInput, {rbutton up}
-             sleep, 50
-            sendInput, {shift down}
-            if(A_Index == 1){
-            sendInput, {a down}
-            sleep, %slip%
-            sendInput, {a up}
-            }
-            else{
-            sendInput, {a down}
-            sleep, %slip2%
-            sendInput, {a up}
-            }
-            sleep, 100
-            sendInput, {shift up}
-            sendInput, {8}
-            sleep, 50
-            sendInput, {z}
-            ; sendInput, {rbutton down}
-            sendInput, {s down}
-            ; sleep, 10350
-            ; loop, 390{
-            loop, 150{
-                ; sendInput, {z}
-                sendInput, {z}
-                sendInput, {rbutton}
-                sendInput, {z}
-                ; sleep, 21
-                sleep, 71
-
-            }
-            sendInput, {s up}
-            ; sendInput, {rbutton up}
-            sendInput, {ctrl up}
-            sleep, 100
-            sendInput, {shift down}
-            sendInput, {a down}
-            sleep, %slip2%
-            sendInput, {a up}
-            sleep, 800
-            sendInput, {shift up}
-            ; sendInput, {8}
-            ; sleep, 100
-            sendInput, {rbutton down }
-            sleep, 2000
-            sendInput, {rbutton up}
-            sleep, 10
-            ; sendInput, {z}
-            sendInput, {z}
-            ; sendInput, {z}
-                }    
-                sendInput, {8}
-                sleep, 400
-                sendInput, {f}
-                
-            return
-            case 12:
-            InputBox, lines , lineas  a Plantar, , , 200, 200, X, Y, Font, 
-            sleep, 100
-            sendInput, {esc}
-            sleep, 100
-            slip = 538
-            ; slip2 = 458
-            slip2 = 438
-            loop, %lines%{
-                ; sendInput, {1}
-                sleep, 10
-            sendInput, {ctrl down}
-            ; sendInput, {rbutton down}
-            sendInput, {w down}
-            ; sleep, 7970
-            ; loop, 490{
-            loop, 280{
-                sendInput, {rbutton}
-                sendInput, {z}
-                ; sleep, 16
-                sleep, 22
-            }
-            sendInput, {w up}
-            ; sendInput, {rbutton up}
-            sendInput, {ctrl up}
-            sleep, 100
-            sendInput, {shift down}
-            if(A_Index == 1){
-            sendInput, {a down}
-            sleep, %slip%
-            sendInput, {a up}
-            }
-            else{
-            sendInput, {a down}
-            sleep, %slip2%
-            sendInput, {a up}
-            }
-            sleep, 800
-            sendInput, {shift up}
-            sendInput, {8}
-            ; sleep, 80
-            sendInput, {rbutton down }
-            sleep, 2000
-            sendInput, {rbutton up}
-            sleep, 10
-            ; sendInput, {1}
-            ; sendInput, {rbutton down}
-            sendInput, {s down}
-            ; sleep, 10350
-            ; loop, 390{
-            loop, 320{
-                sendInput, {rbutton}
-                sendInput, {z}
-                ; sleep, 21
-                sleep, 27
-
-            }
-            sendInput, {s up}
-            ; sendInput, {rbutton up}
-            sendInput, {ctrl up}
-            sleep, 100
-            sendInput, {shift down}
-            sendInput, {a down}
-            sleep, %slip2%
-            sendInput, {a up}
-            sleep, 800
-            sendInput, {shift up}
-            sendInput, {8}
-            ; sleep, 100
-            sendInput, {rbutton down }
-            sleep, 2000
-            sendInput, {rbutton up}
-            sleep, 10
-            sendInput, {z}
-            ; sendInput, {1}
-            }
+            sleep, 1000
+            plant(l)    
             return
             case 13: 
-            InputBox, lines , lineas  a cultivar, , , 200, 200, X, Y, Font, 
+            InputBox, l , growPlants,, HIDE, Width, Height, 400, 150, Font, 
             sleep, 100
             sendInput, {esc}
-            sleep, 100
-            slip = 538
-            ; slip2 = 458
-            slip2 = 438
-            loop, %lines%{
-                sendInput, {1}
-                sleep, 10
-            sendInput, {ctrl down}
-            ; sendInput, {rbutton down}
-            sendInput, {w down}
-            ; sleep, 7970
-            ; loop, 490{
-            loop, 280{
-                sendInput, {lbutton}
-                ; sendInput, {z}
-                ; sleep, 16
-                sleep, 22
-            }
-            sendInput, {w up}
-            ; sendInput, {rbutton up}
-            sendInput, {ctrl up}
-            sleep, 100
-            sendInput, {shift down}
-            if(A_Index == 1){
-            sendInput, {a down}
-            sleep, %slip%
-            sendInput, {a up}
-            }
-            else{
-            sendInput, {a down}
-            sleep, %slip2%
-            sendInput, {a up}
-            }
-            sleep, 800
-            sendInput, {shift up}
-            sendInput, {8}
-            ; sleep, 80
-            sendInput, {rbutton down }
-            sleep, 2000
-            sendInput, {rbutton up}
-            sleep, 10
-            sendInput, {1}
-            ; sendInput, {rbutton down}
-            sendInput, {s down}
-            ; sleep, 10350
-            ; loop, 390{
-            loop, 320{
-                sendInput, {lbutton}
-                ; sendInput, {z}
-                ; sleep, 21
-                sleep, 27
-
-            }
-            sendInput, {s up}
-            ; sendInput, {rbutton up}
-            sendInput, {ctrl up}
-            sleep, 100
-            sendInput, {shift down}
-            sendInput, {a down}
-            sleep, %slip2%
-            sendInput, {a up}
-            sleep, 800
-            sendInput, {shift up}
-            sendInput, {8}
-            ; sleep, 100
-            sendInput, {rbutton down }
-            sleep, 2000
-            sendInput, {rbutton up}
-            sleep, 10
-            ; sendInput, {z}
-            sendInput, {1}
-            }
+            sleep, 1000
+            growPlants(l)
             return
             case 14: 
             InputBox, lines , lineas  a arar, , , 200, 200, X, Y, Font, 
@@ -1309,9 +1136,9 @@ return
             contador2:=0
             tele = 25
             if(!bol){
-            sleep, 100
-            sendInput, {esc}
-            sleep, 150
+                sleep, 100
+                sendInput, {esc}
+                sleep, 150
             }
             sendInput, {t}
             sleep, 150
@@ -1353,6 +1180,10 @@ return
                 if(contador == number){
                     sendInput, {ctrl up}
                     sleep, 100
+                    if(bol){
+                        deleteInventory()
+                    }
+                    sleep, 200
                     sendInput, {t}
                     sleep, 150
                     sendInput, /homes farm
@@ -1370,6 +1201,341 @@ return
                     sleep, 2100
                     contador2 = 0
                 }
-
             }
+        
 }        
+fillInventory(){
+                x = 547
+                y = 216
+                mousemove, x,y , 0
+                sleep, 200
+                sendInput, {lbutton}
+                x+=35
+                mousemove, x, y, 0
+                sleep, 150
+                sendInput, {shift down}
+                sendInput, {lbutton}
+                sleep, 60
+                sendInput, {lbutton}
+                sleep, 60
+                sendInput, {lbutton}
+                sleep, 200
+                sendInput, {shift up}
+                sleep, 100
+                sendInput, {lbutton}
+                sleep, 150
+                sendInput, {e}
+                sleep, 500
+
+}
+fillSecondaryHand(){
+                    sendInput, {4}
+                    sleep, 115
+                    sendInput, {e}
+                    sleep, 400
+                    mousemove,811, 519  , 0
+                    sleep, 150 
+                    sendInput, {Lbutton 3}
+                    sleep, 300
+                    sendInput, {e}
+                    sleep, 400
+                    sendInput, {f}
+                    sleep, 300
+                    sendInput, {rbutton}
+                    sleep, 100
+                    sendInput, {z}
+                    sleep, 300
+}
+
+
+eat(){
+    sendInput, {1}
+    sleep, 200
+    sendInput, {shift down}
+    sendInput, {rbutton down }
+    sleep, 2000
+    sendInput, {rbutton up}
+    sleep, 50
+    sendInput, {shift up}
+    sleep, 50
+}
+
+teleportHomes(home)
+{
+    sendInput, {t}
+    sleep, 150
+    sendInput, /homes %home%
+    sendInput, {enter}
+    sleep, 2000
+}
+
+dumpInventory(){
+                sendInput, {rbutton}
+                sleep, 500
+                x = 657
+                y =  572 
+                mousemove, x,y , 0
+                sleep, 200
+                sendInput, {lbutton}
+                x+=35
+                mousemove, x, y, 0
+                sleep, 150
+                sendInput, {shift down}
+                sendInput, {lbutton}
+                sleep, 60
+                sendInput, {lbutton}
+                sleep, 60
+                sendInput, {lbutton}
+                sleep, 200
+                sendInput, {shift up}
+                sleep, 100
+                sendInput, {lbutton}
+                sleep, 1001
+                sendInput, {e}
+                sleep, 500
+
+}
+        plant(lines)
+        {
+    ; InputBox, lines , lineas  a Plantar, , , 400, 200, X, Y, Font, 
+            ; sleep, 100
+            ; sendInput, {esc}
+            sleep, 100
+            slip = 510
+            ; lines = 15
+            slip2 = 448
+            teleportHomes("c")
+            sendInput, {9}
+            sleep, 300
+            sendInput, {f}
+            sleep, 100
+            loop, %lines%{
+                sleep, 50
+                if(mod(A_Index, 3) == 0 or A_Index == 1){
+                        sortItems()
+                        fillSecondaryHand()
+                    }
+                sendInput, {ctrl down}
+                sendInput, {w down}
+                loop, 115{
+                    sendInput, {z}
+                    sendInput, {rbutton}
+                    sendInput, {z}
+                    sleep, 70
+                }
+                sendInput, {w up}
+                sendInput, {ctrl up}
+                sleep, 400
+                if(mod(A_Index, 5) == 0){
+                    fillInventory()
+                }
+                sleep, 200
+                sendInput, {shift down}
+                eat()
+                sleep, 50
+                sendInput, {shift down}
+                if(A_Index == 1){
+                    sendInput, {a down}
+                    sleep, %slip%
+                    sendInput, {a up}
+                }
+                else{
+                    sendInput, {a down}
+                    sleep, %slip2%
+                    sendInput, {a up}
+                }
+                sleep, 50
+                if(mod(A_Index, 5) == 0){
+                    sendInput, {s down}
+                    sleep, %slip2%
+                    sleep, 40
+                    sendInput, {s up}
+                }
+                sendInput, {shift up}
+                sleep, 50
+                sendInput, {z}
+                sendInput, {s down}
+                loop, 140{
+                    sendInput, {z}
+                    sendInput, {rbutton}
+                    sendInput, {z}
+                    sleep, 71
+
+                }
+                sendInput, {s up}
+                sendInput, {ctrl up}
+                sleep, 100
+                sendInput, {shift down}
+                sendInput, {a down}
+                sleep, %slip2%
+                sendInput, {a up}
+                sleep, 200
+                eat()
+                sleep, 400
+                }    
+                sendInput, {9}
+                sleep, 300
+                sendInput, {f}
+                sleep, 100
+
+}
+growPlants(lines){
+    ; InputBox, lines , lineas  a Cultivar, , , 400, 200, X, Y, Font, 
+            ; sleep, 100
+            ; sendInput, {esc}
+            sleep, 100
+            slip = 538
+            slip2 = 438
+            ; slip2 = 454
+            teleportHomes("c")
+            ; sendInput, {9}
+            ; sleep, 300
+            ; sendInput, {f}
+            sleep, 100
+            sendInput, {3}
+            sleep, 100
+            loop, %lines%{
+                sendInput, {ctrl down}
+                sendInput, {w down}
+                loop, 262{
+                    sendInput, {lbutton}
+                    sleep, 22
+                }
+                sendInput, {w up}
+                sendInput, {ctrl up}
+                sleep, 400
+                if(mod(A_Index, 5) == 0){
+                    dumpInventory()
+                }
+                sleep, 200
+                sendInput, {shift down}
+                eat()
+                sleep, 100
+                sendInput, {3}
+                sleep, 50
+                sendInput, {shift down}
+                if(A_Index == 1){
+                    sendInput, {a down}
+                    sleep, %slip%
+                    sendInput, {a up}
+                }
+                else{
+                    sendInput, {a down}
+                    sleep, %slip2%
+                    sendInput, {a up}
+                }
+                sleep, 50
+                sendInput, {shift up}
+                sleep, 50
+                sendInput, {s down}
+                loop, 330{
+                    sendInput, {lbutton}
+                    sleep, 27
+                }
+                sendInput, {s up}
+                sendInput, {ctrl up}
+                sleep, 100
+                sendInput, {shift down}
+                sendInput, {a down}
+                sleep, %slip2%
+                sendInput, {a up}
+                sleep, 200
+                eat()
+                sleep, 100
+                sendInput, {3}
+                sleep, 100
+            }    
+}
+deleteInventory(){
+    sendInput, {e}
+    sleep, 500
+    c = 35 
+    startx = 986
+    starty = 515
+    speed = 2
+    blockinput, on
+    sendInput, {ctrl down}
+    loop, 6{
+    mousemove, startx, starty , speed
+    sendInput, {q}
+    if(A_Index == 6){
+    startx+=c
+    }
+    startx-=c
+    }
+    startx+=c*5
+    starty-=c
+    loop, 9{
+    mousemove, startx, starty , speed
+    sendInput, {q}
+    if(A_Index == 9){
+    startx+=c
+    }
+    startx-=c
+    }
+    starty-=c
+    mousemove, startx, starty , speed
+    sendInput, {q}
+    loop, 9{
+    mousemove, startx, starty , speed
+    sendInput, {q}
+    if(A_Index ==9){
+    startx-=c
+    }
+    startx+=c
+    }
+    starty-=c
+    mousemove, startx, starty , speed
+    sendInput, {q}
+    loop, 9{
+    mousemove, startx, starty , speed
+    sendInput, {q}
+    startx-=c
+    }
+    sleep, 50
+    blockinput, off
+    sendInput, {ctrl up}
+    sendInput, {e}
+    sleep, 500
+}
+sortItems(){
+    sendInput, {e}
+    sleep, 500
+    c = 35 
+    startx = 986
+    starty = 473
+    speed = 5
+    sendInput, {shift down}
+    loop, 9{
+    mousemove, startx, starty , speed
+    sendInput, {Lbutton}
+    if(A_Index == 9){
+    startx+=c
+    }
+    startx-=c
+    }
+    starty-=c
+    mousemove, startx, starty , speed
+    sendInput, {Lbutton}
+    loop, 9{
+    mousemove, startx, starty , speed
+    sendInput, {Lbutton}
+    if(A_Index ==9){
+    startx-=c
+    }
+    startx+=c
+    }
+    starty-=c
+    mousemove, startx, starty , speed
+    sendInput, {Lbutton}
+    loop, 9{
+    mousemove, startx, starty , speed
+    sendInput, {Lbutton}
+    startx-=c
+    }
+    sleep, 50
+    blockinput, off
+    sendInput, {shift up}
+    sendInput, {e}
+    sleep, 500
+}
