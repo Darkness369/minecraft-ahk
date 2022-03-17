@@ -17,6 +17,7 @@ sendInput, {Rbutton down}
 sendInput, {Lbutton down}
 return
 :*:mision::
+sleep, 100
 sendInput, {t}
 sleep, 120
 sendInput, /mision
@@ -518,7 +519,7 @@ Return
 
 sleep, 10
                  sendInput, {z}
-; sleep, 200
+sleep, 300
 ; Keywait, Rbutton, D
 ; Keywait, Rbutton, U
 ; sendInput, {rbutton 3}
@@ -717,7 +718,7 @@ sleep, 700
                 sleep, 1201
                 c=0
                 contador:=0
-                cantidad = 50
+                cantidad = 60
                 item = 1
                 while(true){
                     contador++
@@ -743,12 +744,13 @@ sleep, 700
                         sendInput, {ctrl up}
                         sendInput, {rbutton up}
                         sleep, 2300
-                        mobsfarm(25,true) 
+                        MsgBox, title, , Revisa las botas, 15
+                        mobsfarm(300,true) 
                         sleep, 200
                         growPlants(31)
                         sleep, 200
                         plant(31)
-                        sleep, 200
+                        sleep, 500
                         contador = 0
                         c++
                         if(c==n){
@@ -1149,34 +1151,17 @@ return
                 sleep, 200
                 sendInput, {2}
                 contador++
-                contador2++
-                sendInput, {Ctrl down}
-                sendInput, {w down}
-                sleep, 1400
-                sendInput, {w up}
-                sendInput, {d down}
-                sleep, 30
-                sendInput, {d up}
+                ; contador2++
+                ; sendInput, {shift down}
                 sendInput, {Lbutton}
-                sendInput, {s down}
-                sendInput, {d down}
-                sleep, 30
-                sendInput, {d up}
-                sleep, 2200
-                sendInput, {s up}
+                sleep, 3000
                 sendInput, {Lbutton}
-                sleep, 800
-                sendInput, {Lbutton}
-                sendInput, {ctrl up}
+                ; sendInput, {shift up}
                 sendInput, {1}
                 sendInput, {Rbutton down}
                 sleep, 2000
                 sendInput, {Rbutton up}
                 sendInput, {2}
-                sendInput, {a down}
-                sleep, 300
-                sendInput, {a up}
-                sleep, 800
                 if(contador == number){
                     sendInput, {ctrl up}
                     sleep, 100
@@ -1191,16 +1176,16 @@ return
                     sleep, 2100
                     break
                 }
-                if(contador2 == tele){
-                    sendInput, {ctrl up}
-                    sleep, 100
-                    sendInput, {t}
-                    sleep, 150
-                    sendInput, /homes x
-                    sendInput, {enter}
-                    sleep, 2100
-                    contador2 = 0
-                }
+                ; if(contador2 == tele){
+                ;     sendInput, {ctrl up}
+                ;     sleep, 100
+                ;     sendInput, {t}
+                ;     sleep, 150
+                ;     sendInput, /homes x
+                ;     sendInput, {enter}
+                ;     sleep, 2100
+                ;     contador2 = 0
+                ; }
             }
         
 }        
@@ -1306,9 +1291,9 @@ dumpInventory(){
             slip2 = 448
             teleportHomes("c")
             sendInput, {9}
-            sleep, 300
+            sleep, 600
             sendInput, {f}
-            sleep, 100
+            sleep, 200
             loop, %lines%{
                 sleep, 50
                 if(mod(A_Index, 3) == 0 or A_Index == 1){

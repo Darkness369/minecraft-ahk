@@ -303,7 +303,7 @@ return
 :*:rhm::
 SendInput, Ra{alt down}{Numpad1}{Numpad6}{Numpad3}{alt up}l Herrera Mac{alt down}{Numpad1}{Numpad6}{Numpad1}{alt up}as
 return
-::rhg@::rherrera@guud.com.mx
+:*:rhg@::rherrera@guud.com.mx
 :*:rhgp::Raul2024**
 :*:bpw::@A..e..3
 :*:fd@::facelessdivine@gmail.com
