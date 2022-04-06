@@ -1,4 +1,7 @@
-
+^+!NumLock::
+run, C:\Users\facel\OneDrive\Desktop\scripts\minecraft-ahk\basescript.ahk
+ExitApp, 0
+return
 ::rmm::
 sleep, 400
 usernames:= ["Alejandra_h","Daniela777","FireStorm","Storm_Shadow","StarBreaker","WorldInFire","TheSevenFold", "Luis_CR", "WorldWideFuck"]
@@ -14,7 +17,10 @@ return
 ; return
 ^numpad3::
 sendInput, {Rbutton down}
-sendInput, {Lbutton down}
+while(true){
+sendInput, {Lbutton}
+sleep, 155
+}
 return
 :*:mision::
 sleep, 100
@@ -29,10 +35,10 @@ sendInput, {lbutton}
 return
 ^numpad4::
 while(true){
-    sendInput, {shift down}
+    ; sendInput, {shift down}
 Keywait, Rbutton, D
 Keywait, Rbutton, U
-sendInput, {z}
+; sendInput, {z}
 loop, 3
 {
 send, {rbutton}
@@ -45,12 +51,17 @@ Return
 voteSites := ["http://topminecraftservers.org/vote/21165","https://topg.org/minecraft-servers/server-631211","https://minecraftservers.org/server/627843","https://minecraft-mp.com/server/296226/vote/","https://servidoresdeminecraft.es/server/status/QKMQu04z/supercraft.es","https://www.40servidoresmc.es/supercraft-votar"]
 SendInput, {Ctrl down}{shift down}{n}{Ctrl up}{shift up}
 sleep, 2000
-sendInput, ^{d}
+sendInput, !{d}
 for index, element in voteSites ; Enumeration is the recommended approach in most cases.
 {
     clipboard := element
     sendInput, ^{v}
     sendInput, {enter}
+    if (index == 0){
+    sendInput, ^{v}
+    sendInput, {enter}
+
+    }
     sleep, 1000
     if(A_Index != 6){
         sendInput, ^{t}
@@ -58,6 +69,7 @@ for index, element in voteSites ; Enumeration is the recommended approach in mos
     sleep, 1000
 }
 ; sendInput, ^{w}
+clipboard := global username
 return
 ^numpad9::
 keywait, Rbutton, D
@@ -123,45 +135,62 @@ if WinExist(mc) {
     }
 Keywait, ctrl, D
 Keywait, ctrl, U
-mousemove, 1194, 726 ,0 ;Desconectarse
+mousemove, 1198, 706  ,0 ;Desconectarse
 click, left
-sleep, 200
-mousemove, 1209, 623,0 ;combo box cuentas
+sleep, 150
+mousemove, 1234, 608 ,0 ;combo box cuentas
+click
+mousemove, 1194, 635 ,0 ;click a Launcherfenix
 click
 sleep, 100
-mousemove, 1186, 652,0 ;click a Launcherfenix
+mousemove, 1233, 629  ,0 ;Click al input de email
 click
 sleep, 100
-mousemove, 1250, 647 ,0 ;Click al input de email
-click, left
-sleep, 50
 sendInput, facelessdivine@gmail.com
 sendInput,{tab}
 sleep, 100
 sendInput, 100101011010110password10010
 sleep, 100
-mousemove, 1297, 722 , 0 ;click en conectarse
+mousemove, 1285, 701  , 0 ;click en conectarse
 click
-sleep, 1000
+sleep, 900
 click ;Iniciar juego
+global username = facelessdivine
 Return
 
 ^numpad2::
-usuario:=""
-usernames:= ["Alejandra_h","Daniela777","FireStorm","Storm_Shadow","StarBreaker","WorldInFire","TheSevenFold", "Luis_CR", "WorldWideFuck"]
-InputBox, user , user gui,1-Alejandra_h 2-Daniela777 3-FireStorm 4-Storm_Shadow 5-StarBreaker 6- WorldInFire 7- TheSevenFold 8- Luis_CR, 9- WorldWideFuck, , 400, 100, X, Y, Font,
-
-        usuario := usernames[user]
+r = 0
+InputBox, r , Title,1-Obtener lista de usuarios en la base de datos 2-Crear un usuario nuevo, ,450,350, X, Y, Font,
+usuario :=""
+Switch, r{
+    case 1:
+    Array := getList()
+    Str := ""
+    For Index, Value In Array
+    {
+        Str .= Value . "  ----------->  "
+        Str .= Index . "|"
+    }
+    Str := StrReplace(Str, "|", "`n")
+    InputBox, user , Title,%Str%, ,450,700, X, Y, Font,
+    if(user >=1){
+        usuario := Array[user]
+        global username = usuario
+    }
+    else{
+        return
+    }
+    case 2:
+    usuario := getNewUser()
+    global username = usuario
+    Default:
+    return
+}
 
 sleep, 300
-; sendInput, {esc}
-; sleep, 120
-; sendInput, {tab 7}
-; sleep, 50
-; sendInput, {enter}
 d = 0
 InputBox,d ,Cerrar?, , , 200, 200, X, Y, Font, 
-sleep, 1200
+sleep, 800
 if(d == 1){
 WinGet mc_pid, PID, A
 process close, %mc_pid%   
@@ -174,29 +203,30 @@ if WinExist(mc) {
     }
 Keywait, ctrl, D
 Keywait, ctrl, U
-mousemove, 1194, 726 ,0 ;Desconectarse
+mousemove, 1198, 706  ,0 ;Desconectarse
 click, left
-sleep, 200
-mousemove, 1209, 623,0 ;combo box cuentas
+sleep, 150
+mousemove, 1234, 608 ,0 ;combo box cuentas
 click
-mousemove, 1196, 642 ,0 ;selecciona noPremium
+mousemove, 1185, 621  ,0 ;selecciona noPremium
 click
-mousemove, 1250, 647 ,0 ;Click al input de email
+mousemove, 1233, 629  ,0 ;Click al input de email
 click, left
 sendInput, %usuario%
 sleep, 50
-mousemove, 1297, 722 , 0 ;click en conectarse
+mousemove, 1285, 701  , 0 ;click en conectarse
 click
-sleep, 500
+sleep, 600
 click ;Iniciar juego
 Return
 f1::
 sendInput, {t}
 sleep, 120
 sendInput, /login Password44 {enter}
-sleep, 1200
+sleep, 2350
 sendInput, {rbutton}
-sleep, 1200
+sendInput, {rbutton}
+sleep, 800
 mousemove, 617, 258 ,0
 click
 sleep, 200
@@ -718,7 +748,7 @@ sleep, 700
                 sleep, 1201
                 c=0
                 contador:=0
-                cantidad = 60
+                cantidad = 62
                 item = 1
                 while(true){
                     contador++
@@ -744,12 +774,12 @@ sleep, 700
                         sendInput, {ctrl up}
                         sendInput, {rbutton up}
                         sleep, 2300
-                        MsgBox, title, , Revisa las botas, 15
-                        mobsfarm(300,true) 
+                        ; MsgBox, title, , Revisa las botas, 15
+                        mobsfarm(100,true) 
                         sleep, 200
-                        growPlants(31)
-                        sleep, 200
-                        plant(31)
+                         growPlants(31)
+                        ; sleep, 200
+                         plant(31)
                         sleep, 500
                         contador = 0
                         c++
@@ -1142,10 +1172,10 @@ return
                 sendInput, {esc}
                 sleep, 150
             }
-            sendInput, {t}
-            sleep, 150
-            sendInput, /homes x ;granja de experiencia mobs para reparar las botas
-            sendInput, {enter}
+;            sendInput, {t}
+ ;           sleep, 150
+  ;          sendInput, /homes x ;granja de experiencia mobs para reparar las botas
+   ;         sendInput, {enter}
             sleep, 1200
             while(true){
                 sleep, 200
@@ -1153,13 +1183,14 @@ return
                 contador++
                 ; contador2++
                 ; sendInput, {shift down}
-                sendInput, {Lbutton}
-                sleep, 3000
-                sendInput, {Lbutton}
+				loop ,10 {
+				sendInput, {lbutton}
+				sleep, 900
+				}
                 ; sendInput, {shift up}
                 sendInput, {1}
                 sendInput, {Rbutton down}
-                sleep, 2000
+                sleep, 2100
                 sendInput, {Rbutton up}
                 sendInput, {2}
                 if(contador == number){
@@ -1288,12 +1319,12 @@ dumpInventory(){
             sleep, 100
             slip = 510
             ; lines = 15
-            slip2 = 448
+            slip2 = 440
             teleportHomes("c")
             sendInput, {9}
             sleep, 600
             sendInput, {f}
-            sleep, 200
+            sleep, 600
             loop, %lines%{
                 sleep, 50
                 if(mod(A_Index, 3) == 0 or A_Index == 1){
@@ -1302,7 +1333,7 @@ dumpInventory(){
                     }
                 sendInput, {ctrl down}
                 sendInput, {w down}
-                loop, 115{
+                loop, 145{
                     sendInput, {z}
                     sendInput, {rbutton}
                     sendInput, {z}
@@ -1369,8 +1400,9 @@ growPlants(lines){
             ; sleep, 100
             ; sendInput, {esc}
             sleep, 100
-            slip = 538
-            slip2 = 438
+            slip = 510
+            ; lines = 15
+            slip2 = 440
             ; slip2 = 454
             teleportHomes("c")
             ; sendInput, {9}
@@ -1523,4 +1555,51 @@ sortItems(){
     sendInput, {shift up}
     sendInput, {e}
     sleep, 500
+}
+
+Jxon_Load(jsontxt){
+    
+    newStr := StrReplace( StrReplace( StrReplace( StrReplace( StrReplace( StrReplace(StrReplace(StrReplace(StrReplace(StrReplace(jsontxt, "{", ""), "}", ""), """" "username" """" , "")  , "[","" ),"]","" ) , """", ""), A_Space, "" ) , "id:", ""), ",:", "|"), ",", ":")
+    StringLen, n,newStr
+    newStr :=SubStr(newStr, 2,n)
+    return newStr
+}
+Jxon_Load2(jsontxt){
+    newStr := StrReplace( StrReplace( StrReplace( StrReplace(StrReplace(StrReplace(StrReplace(StrReplace(StrReplace(jsontxt, "{", ""), "}", ""), """" "username" """" , "")  , "[","" ),"]","" ) , """", ""), A_Space, "" ) , ":", ""), ".", "")
+    StringLen, n,newStr
+    newStr :=SubStr(newStr, 2,n)
+    return newStr
+}
+Dict(dictName,key) {
+	keyPos := InStr(dictName,key)
+	dictStr2 := SubStr(dictName,keyPos)
+	IfInString , dictStr2 , | 
+	{
+		endPos := InStr(dictStr2, "|")
+	}else{
+		endPos := StrLen(dictStr2)+1
+	}
+	startPos := StrLen(key)+2
+	returnValue := SubStr(dictStr2,startPos,(endPos-startPos))
+    return returnValue
+}
+getList(){
+req := ComObjCreate("Msxml2.XMLHTTP")
+req.open("GET", "http://127.0.0.1:5000/list", true)
+req.send()
+sleep, 500
+Array := Jxon_Load2(req.responseText)
+; msgbox, %Array%
+new_array := []
+for a, b in StrSplit(Array, ",",".")
+			new_array.Insert(b)
+return new_array
+}
+getNewUser(){
+req := ComObjCreate("Msxml2.XMLHTTP")
+req.open("GET", "http://127.0.0.1:5000/user", true)
+req.send()
+sleep, 1500
+new_user :=  Jxon_Load2(req.responseText)
+return new_user
 }

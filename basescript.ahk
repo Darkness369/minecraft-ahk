@@ -1,4 +1,71 @@
+pgdn & Up::
+Run nircmd.exe changebrightness +20
+cbnss:= GetCurrentBrightNess()
+ToolTip, %cbnss%	
+SetTimer, RemoveToolTip, 400, 150
 
+return
+
+pgdn & Down::
+Run nircmd.exe changebrightness -20
+cbnss:= GetCurrentBrightNess()
+ToolTip, %cbnss%	
+SetTimer, RemoveToolTip, 400, 150
+
+return
+
+GetCurrentBrightNess()
+{
+	For property in ComObjGet( "winmgmts:\\.\root\WMI" ).ExecQuery( "SELECT * FROM WmiMonitorBrightness" )
+		currentBrightness := property.CurrentBrightness	
+
+	return currentBrightness
+}
+
+RemoveToolTip:
+ToolTip
+return
+::psh::
+sendInput, passphrase{enter}
+return
+; Google Search highlighted text
+^+!c::
+{
+ SendInput, ^c
+ Sleep 20
+ Run, %clipboard%
+ Return
+}
+^+y::
+{
+ SendInput, ^c
+ Sleep 20
+ Run, https://www.youtube.com/results?search_query=%clipboard%
+ Return
+}
+
+^+c::
+{
+ SendInput, ^c
+ Sleep 20
+ Run, http://www.google.com/search?q=%clipboard%
+ Return
+}
+:*:git clone::
+sendInput, git clone %Clipboard%{enter}
+Return
+
+^SPACE::
+Winset, Alwaysontop, , A ; ctrl + space
+Return
+
+#Del::
+FileRecycleEmpty ; win + del
+Return
+^+!NumLock::
+run, C:\Users\facel\OneDrive\Desktop\scripts\minecraft-ahk\Minecraft.ahk
+ExitApp, 0
+return
 ::loginpy::
 sleep, 100
 sendInput, {tab 2}
@@ -250,11 +317,11 @@ Return
 
 
 rcontrol::
-    brave:="ahk_exe opera.exe"
-    brave_path:="C:\Users\raulh\AppData\Local\Programs\Opera GX\launcher.exe"
+    brave:="ahk_exe brave.exe"
+    brave_path:="C:\Program Files\BraveSoftware\Brave-Browser\Application\brave.exe"
     if WinExist(brave) {
         if(!WinActive(brave)) {
-WinActivate
+			WinActivate
          ;   WinGet brave_pid, PID, A
           ;  process close, %brave_pid%
         }
@@ -266,20 +333,20 @@ WinActivate
 return
 
 
-Rwin::
-    whatsapp:="ahk_exe WhatsApp.exe"
-    whatsapp_path:="C:\Users\raulh\AppData\Local\WhatsApp\WhatsApp.exe"
-    if WinExist(whatsapp) {
-        if(WinActive(whatsapp)) {
-            WinGet whatsapp_pid, PID, A
-            process close, %whatsapp_pid%
-        } else {
-            WinActivate
-        }
-    }else{
-        run %whatsapp_path%
-    }
-return
+;Rwin::
+;    whatsapp:="ahk_exe WhatsApp.exe"
+ ;   whatsapp_path:="C:\Users\raulh\AppData\Local\WhatsApp\WhatsApp.exe"
+  ;  if WinExist(whatsapp) {
+   ;     if(WinActive(whatsapp)) {
+    ;        WinGet whatsapp_pid, PID, A
+      ;      process close, %whatsapp_pid%
+     ;   } else {
+       ;     WinActivate
+        ;}
+;    }else{
+ ;       run %whatsapp_path%
+  ;  }
+;return
 :*:111mtc::
 sendInput, 1118150082
 return
@@ -336,6 +403,9 @@ if winactive("ahk_exe brave.exe") or winactive("ahk_exe opera.exe"){
     send, ^{w}
 }else  if winactive("ahk_exe javaw.exe"){
 send, {z}	
+}
+else  if winactive("ahk_class Progman"){
+send, #{e}	
 }else {
 send, !{f4}
 }
@@ -531,7 +601,19 @@ Return
 ;     }
 ;     MsgBox, 0, END, Fin del script, 3
 ; Return
-:*:date()::
+:*:datetime...::
+FormatTime, TimeString,T12, Time
+FormatTime, mesCompleto, , MMMM
+FormatTime, dia2, , dd
+FormatTime, ano, , yyyy
+sendInput %mesCompleto%-%dia2%-%ano% %TimeString%
+
+return
+:*:time...::
+FormatTime, TimeString,T12, Time
+sendInput, %TimeString%
+return
+:*:date...::
     FormatTime, mesCompleto, , MMMM
     FormatTime, dia2, , dd
     FormatTime, ano, , yyyy
