@@ -256,18 +256,26 @@ return
 
 :*:git clone::
     {   
-    sendInput, git clone %Clipboard%{enter}
-    array :=  StrSplit(Clipboard, "/")
-    fname := array.pop()
-    array2 :=  StrSplit(fname, ".")
-    fname2 := array2[1]
-    Clipboard:= fname2
-    keywait, appsKey, D
-    keywait, appsKey, U
-    sleep, 100
-    sendInput, cd %Clipboard%  
-    sleep, 200
-    sendInput, {enter} 
+        
+        url:= clipboard
+	  clipboard:=""
+        clipwait
+        keywait, appsKey, D
+        keywait, appsKey, U
+        sendInput, git clone %url% -b %clipboard%
+        array :=  StrSplit(url, "/")
+        fname := array.pop()
+        array2 :=  StrSplit(fname, ".")
+        fname2 := array2[1]
+        Clipboard:= fname2
+        keywait, appsKey, D
+        keywait, appsKey, U
+        sleep, 100
+        sendInput, cd %clipboard%  
+        sleep, 200
+        sendInput, {enter}
+        Clipboard:= "npm install"
+	  sendInput, %clipboard%{enter}
     }
 Return
 :*:get clone::
@@ -596,6 +604,7 @@ return
 :*:fd@::facelessdivine@gmail.com
 :*:111@::1118150082@utch.edu.mx
 :*:hemr::HEMR000915HCHRCLA7
+::numss::63160076053
 ; :*:111equipo::
 ;     sendInput, Rosa Alejandra Legarda Bencomo, Efra{alt down}{Numpad1}{Numpad6}{Numpad1}{alt up}n Fernando Bejarano Puentes, Ra{alt down}{Numpad1}{Numpad6}{Numpad3}{alt up}l Herrera Mac{alt down}{Numpad1}{Numpad6}{Numpad1}{alt up}as
 ; return
