@@ -1,3 +1,13 @@
+:*:pdfcolab::
+keywait, CTRL, D
+keywait, CTRL, U
+sendInput, !sudo apt-get install texlive-xetex texlive-fonts-recommended texlive-plain-generic
+sendInput,  {ctrl down}{enter}{ctrl up}
+keywait, CTRL, D
+keywait, CTRL, U
+sendInput, !jupyter nbconvert --to pdf ruta.ipynb
+sendInput,  {ctrl down}{enter}{ctrl up}
+return
 :*:rimraf::
 sendInput, {home}
 sleep, 200 
@@ -542,7 +552,7 @@ return
 Return
 
 rcontrol::
-    brave:="ahk_exe brave.exe"
+    brave:="ahk_exe chrome.exe"
     brave_path:="C:\Program Files\BraveSoftware\Brave-Browser\Application\brave.exe"
     if WinExist(brave) {
         if(!WinActive(brave)) {
