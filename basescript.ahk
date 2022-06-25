@@ -1,3 +1,4 @@
+previousTab = ""
 :*:pdfcolab::
 keywait, CTRL, D
 keywait, CTRL, U
@@ -556,9 +557,16 @@ rcontrol::
     brave_path:="C:\Program Files\BraveSoftware\Brave-Browser\Application\brave.exe"
     if WinExist(brave) {
         if(!WinActive(brave)) {
+            WinGet, class1, ProcessName, A
+            previousTab := "ahk_exe " class1
+            ; msgbox, %previousTab%
             WinActivate
-            ;   WinGet brave_pid, Pid, A
-            ;  process close, %brave_pid%
+        }else{
+            if WinExist(previousTab){
+                WinActivate
+            }else{
+                previousTab = ""
+            }
         }
     }
     
@@ -572,7 +580,16 @@ Rwin::
     whatsapp_path:="C:\Users\facel\AppData\Local\WhatsApp\WhatsApp.exe"
     if WinExist(whatsapp) {
         if(!WinActive(whatsapp)) {
+            WinGet, class1, ProcessName, A
+            class1 := "ahk_exe " class1
+            previousTab = class1
             WinActivate
+        }else{
+            if WinExist(previousTab){
+                if(WinActive(!previousTab)){
+                    WinActivate
+                }
+            }
         }
     } else {
         run %whatsapp_path%
