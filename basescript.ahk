@@ -557,8 +557,8 @@ rcontrol::
     brave_path:="C:\Program Files\BraveSoftware\Brave-Browser\Application\brave.exe"
     if WinExist(brave) {
         if(!WinActive(brave)) {
-            WinGet, class1, ProcessName, A
-            previousTab := "ahk_exe " class1
+            WinGet, class1, PID , A
+            previousTab := "ahk_pid " class1
             ; msgbox, %previousTab%
             WinActivate
         }else{
