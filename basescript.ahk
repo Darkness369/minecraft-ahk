@@ -39,10 +39,6 @@ keywait, CTRL, D
 keywait, CTRL, U
 sendInput, " {enter}
 return
-::push::
-sendInput, git push {enter}
-
-return
 
 :*:npmd::
 sendInput, ^{c}
