@@ -1,3 +1,7 @@
+numlock::
+ WinGet re4_pid, Pid, A
+ process close, %re4_pid%
+return
 previousTab = ""
 :*:pdfcolab::
 keywait, CTRL, D
@@ -553,13 +557,12 @@ return
 Return
 
 rcontrol::
-    brave:="ahk_exe chrome.exe"
+    brave:="ahk_exe brave.exe"
     brave_path:="C:\Program Files\BraveSoftware\Brave-Browser\Application\brave.exe"
     if WinExist(brave) {
         if(!WinActive(brave)) {
             WinGet, class1, PID , A
             previousTab := "ahk_pid " class1
-            ; msgbox, %previousTab%
             WinActivate
         }else{
             if WinExist(previousTab){
