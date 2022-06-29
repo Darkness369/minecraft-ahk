@@ -1,16 +1,33 @@
+previousTab = ""
+CapsLock::
+sendInput, ^{c}
+sleep, 800
+keywait, CapsLock, D
+keywait, CapsLock, U
+sendInput, ^{v}
+return
 numlock::
  WinGet re4_pid, Pid, A
  process close, %re4_pid%
 return
-previousTab = ""
 :*:pdfcolab::
 keywait, CTRL, D
 keywait, CTRL, U
-sendInput, !sudo apt-get install texlive-xetex texlive-fonts-recommended texlive-plain-generic
+sendInput, {alt down}{numpad3}{numpad3}{alt up}
+sendInput, sudo apt-get update
 sendInput,  {ctrl down}{enter}{ctrl up}
 keywait, CTRL, D
 keywait, CTRL, U
-sendInput, !jupyter nbconvert --to pdf ruta.ipynb
+sendInput, {alt down}{numpad3}{numpad3}{alt up}
+sendInput, sudo apt-get install texlive-xetex texlive-fonts-recommended texlive-plain-generic
+sendInput,  {ctrl down}{enter}{ctrl up}
+keywait, CTRL, D
+keywait, CTRL, U
+sendInput, {alt down}{numpad3}{numpad3}{alt up}
+Clipwait
+keywait, CTRL, D
+keywait, CTRL, U
+sendInput,  jupyter nbconvert --to pdf %clipboard%
 sendInput,  {ctrl down}{enter}{ctrl up}
 return
 :*:rimraf::
@@ -265,7 +282,7 @@ return
 Return
 
 rcontrol::
-    brave:="ahk_exe brave.exe"
+    brave:="ahk_exe chrome.exe"
     brave_path:="C:\Program Files\BraveSoftware\Brave-Browser\Application\brave.exe"
     if WinExist(brave) {
         if(!WinActive(brave)) {
