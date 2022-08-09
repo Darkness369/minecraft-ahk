@@ -1,79 +1,78 @@
 previousTab = ""
-CapsLock::
-sendInput, ^{c}
-sleep, 800
-keywait, CapsLock, D
-keywait, CapsLock, U
-sendInput, ^{v}
+
+^lbutton::
+sendInput, {alt down}{left}{alt up}
+return
+^Rbutton::
+sendInput, {alt down}{right}{alt up}
 return
 numlock::
- WinGet re4_pid, Pid, A
- process close, %re4_pid%
+    WinGet re4_pid, Pid, A
+    process close, %re4_pid%
 return
 :*:pdfcolab::
-keywait, CTRL, D
-keywait, CTRL, U
-sendInput, {alt down}{numpad3}{numpad3}{alt up}
-sendInput, sudo apt-get update
-sendInput,  {ctrl down}{enter}{ctrl up}
-keywait, CTRL, D
-keywait, CTRL, U
-sendInput, {alt down}{numpad3}{numpad3}{alt up}
-sendInput, sudo apt-get install texlive-xetex texlive-fonts-recommended texlive-plain-generic
-sendInput,  {ctrl down}{enter}{ctrl up}
-keywait, CTRL, D
-keywait, CTRL, U
-sendInput, {alt down}{numpad3}{numpad3}{alt up}
-Clipwait
-keywait, CTRL, D
-keywait, CTRL, U
-sendInput,  jupyter nbconvert --to pdf %clipboard%
-sendInput,  {ctrl down}{enter}{ctrl up}
+    keywait, CTRL, D
+    keywait, CTRL, U
+    sendInput, {alt down}{numpad3}{numpad3}{alt up}
+    sendInput, sudo apt-get update
+    sendInput, {ctrl down}{enter}{ctrl up}
+    keywait, CTRL, D
+    keywait, CTRL, U
+    sendInput, {alt down}{numpad3}{numpad3}{alt up}
+    sendInput, sudo apt-get install texlive-xetex texlive-fonts-recommended texlive-plain-generic
+    sendInput, {ctrl down}{enter}{ctrl up}
+    keywait, CTRL, D
+    keywait, CTRL, U
+    sendInput, {alt down}{numpad3}{numpad3}{alt up}
+    Clipwait
+    keywait, CTRL, D
+    keywait, CTRL, U
+    sendInput, jupyter nbconvert --to pdf %clipboard%
+    sendInput, {ctrl down}{enter}{ctrl up}
 return
 :*:rimraf::
-sendInput, {home}
-sleep, 200 
-sendinput, rimraf .\**\
+    sendInput, {home}
+    sleep, 200 
+    sendinput, rimraf .\**\
 return
 :*:guudmail::
-run, "https://guud.com.mx:2096/cpsess9695194462/3rdparty/roundcube/?_task=mail&_mbox=INBOX"
+    run, "https://guud.com.mx:2096/cpsess9695194462/3rdparty/roundcube/?_task=mail&_mbox=INBOX"
 return
 :*:guudclickup::
-run, "https://app.clickup.com/6966894/v/l/6-163193463-1"
+    run, "https://app.clickup.com/6966894/v/l/6-163193463-1"
 return
-:*:npm  ::
-sendInput, ^{c}
-sleep, 100
-sendInput, ^{c}
-sleep, 100
-sendInput, ^{c}
-sleep, 20
-sendInput, cls & npm start {enter}
+:*:npm ::
+    sendInput, ^{c}
+    sleep, 100
+    sendInput, ^{c}
+    sleep, 100
+    sendInput, ^{c}
+    sleep, 20
+    sendInput, cls & npm start {enter}
 return
 ::comit:: 
-sendInput, git commit -a -m "
-keywait, CTRL, D
-keywait, CTRL, U
-sendInput, " {enter}
+    sendInput, git commit -a -m "
+    keywait, CTRL, D
+    keywait, CTRL, U
+    sendInput, " {enter}
 return
 
 :*:npmd::
-sendInput, ^{c}
-sleep, 100
-sendInput, ^{c}
-sleep, 100
-sendInput, ^{c}
-sendInput, npm run dev
-sendInput, {enter}
+    sendInput, ^{c}
+    sleep, 100
+    sendInput, ^{c}
+    sleep, 100
+    sendInput, ^{c}
+    sendInput, npm run dev
+    sendInput, {enter}
 return
-
 
 pgdn & Up::
     Run nircmd.exe changebrightness +20
     cbnss:= GetCurrentBrightNess()
     ToolTip, %cbnss%
     SetTimer, RemoveToolTip, 400, 150
-    
+
 return
 
 pgdn & Down::
@@ -81,15 +80,15 @@ pgdn & Down::
     cbnss:= GetCurrentBrightNess()
     ToolTip, %cbnss%
     SetTimer, RemoveToolTip, 400, 150
-    
+
 return
 
 GetCurrentBrightNess()
 {
     For property in ComObjGet( "winmgmts:\\.\root\WMI" ).ExecQuery( "SELECT * FROM WmiMonitorBrightness" )
-    currentBrightness := property.CurrentBrightness
-    
-    return currentBrightness
+        currentBrightness := property.CurrentBrightness
+
+return currentBrightness
 }
 
 RemoveToolTip:
@@ -103,83 +102,85 @@ return
         SendInput, ^c
         Sleep 100
         Run, %clipboard%
-    Return
-}
+        Return
+    }
 ^+y::
     {
         SendInput, ^c
         Sleep 100
         Run, https://www.youtube.com/results?search_query=%clipboard%
-    Return
-}
+        Return
+    }
 ^+!y::
     {
         SendInput, ^c
         Sleep 100
         ytid:= StrSplit(clipboard, "=")
         id:= ytid[2]
+        yid:= StrSplit(id, "&")
+        id:= yid[1]
         Run, https://www.y2mate.com/youtube/%id%
-    Return
-}
+        Return
+    }
 ^+!z::
     {
         id:= "https://us05web.zoom.us/j/88390008320?pwd=YzNaZXpCWmhXb1Rkb2Y2UmhIVi9oUT09"
         Run, %id%
-    Return
-}
+        Return
+    }
 ^+!x::
     {
         id:= "https://itesm.zoom.us/j/5173749162"
         Run, %id%
-    Return
-}
+        Return
+    }
 
 ^+c::
     {
         SendInput, ^c
         Sleep 100
         Run, http://www.google.com/search?q=%clipboard%
-    Return
-}
+        Return
+    }
 
 :*:git clone::
-    {   
-        
+    { 
+
         url:= clipboard
-	  clipboard:=""
+        clipboard:=""
         clipwait
         keywait, appsKey, D
         keywait, appsKey, U
         sendInput, git clone %url% -b %clipboard%
-        array :=  StrSplit(url, "/")
+        array := StrSplit(url, "/")
         fname := array.pop()
-        array2 :=  StrSplit(fname, ".")
+        array2 := StrSplit(fname, ".")
         fname2 := array2[1]
         Clipboard:= fname2
         keywait, appsKey, D
         keywait, appsKey, U
         sleep, 100
-        sendInput, cd %clipboard%  
+        sendInput, cd %clipboard% 
         sleep, 200
         sendInput, {enter}
         Clipboard:= "npm install"
-	  sendInput, %clipboard%{enter}
+        sendInput, %clipboard%{enter}
     }
 Return
 :*:get clone::
-    {   
-    sendInput, %Clipboard%{enter}
-    array :=  StrSplit(Clipboard, "/")
-    fname := array.pop()
-    array2 :=  StrSplit(fname, ".")
-    fname2 := array2[1]
-    Clipboard:= fname2
-    keywait, appsKey, D
-    keywait, appsKey, U
-    sleep, 100
-    sendInput, cd %Clipboard% & npm install 
-    sleep, 200
-    sendInput, {enter} 
+    { 
+        sendInput, %Clipboard%{enter}
+        array := StrSplit(Clipboard, "/")
+        fname := array.pop()
+        array2 := StrSplit(fname, ".")
+        fname2 := array2[1]
+        Clipboard:= fname2
+        keywait, appsKey, D
+        keywait, appsKey, U
+        sleep, 100
+        sendInput, cd %Clipboard% & npm install 
+        sleep, 200
+        sendInput, {enter} 
     }
 Return
 
@@ -188,7 +189,7 @@ Return
 Return
 ^+!NumLock::
     run, C:\Users\facel\OneDrive\Desktop\scripts\minecraft-ahk\Minecraft.ahk
-    ExitApp, 0
+ExitApp, 0
 return
 ::inpy::
     sleep, 100
@@ -210,7 +211,6 @@ return
     sendInput, https://proyecta.utch.edu.mx/salumno/informacion
     sendInput, {enter}
 return
-
 
 :*:psql1::
     sendInput, psql -U postgres
@@ -237,7 +237,7 @@ return
     MouseMove, 326, 83, 0
     Click
     MouseMove, X, Y, 0
-    
+
     ; Input my radius
     InputBox, Radius, Radius, Input Radius
     ; Draw my circle
@@ -282,8 +282,8 @@ return
 Return
 
 rcontrol::
-    brave:="ahk_exe chrome.exe"
-    brave_path:="C:\Program Files\BraveSoftware\Brave-Browser\Application\brave.exe"
+    brave:="ahk_exe firefox.exe"
+    brave_path:="C:\Users\facel\AppData\Local\Mozilla Firefox\firefox.exe"
     if WinExist(brave) {
         if(!WinActive(brave)) {
             WinGet, class1, PID , A
@@ -297,7 +297,7 @@ rcontrol::
             }
         }
     }
-    
+
     else{
         run %brave_path%
     }
@@ -330,7 +330,7 @@ return
     while (true) {
         send, {Wheeldown}
         send, {Wheeldown}
-        
+
         sleep, 900
     }
 return
@@ -362,7 +362,7 @@ return
     sendinput, 1118150082
 Return
 Mbutton::
-    if winactive("ahk_exe brave.exe") or winactive("ahk_exe opera.exe") or winactive("ahk_exe Code.exe")or winactive("ahk_exe chrome.exe"){
+    if winactive("ahk_exe brave.exe") or winactive("ahk_exe opera.exe") or winactive("ahk_exe Code.exe")or winactive("ahk_exe chrome.exe")or winactive("ahk_exe firefox.exe"){
         send, ^{w}
     }else if winactive("ahk_exe javaw.exe") {
         send, {z}
@@ -377,14 +377,13 @@ Mbutton::
     }
 return
 
-
 :*:datetime...::
     FormatTime, TimeString, T12, Time
     FormatTime, mesCompleto, , MMMM
     FormatTime, dia2, , dd
     FormatTime, ano, , yyyy
     sendInput %mesCompleto%-%dia2%-%ano% %TimeString%
-    
+
 return
 :*:time...::
     FormatTime, TimeString, T12, Time
@@ -405,10 +404,10 @@ return
     KeyWait, Control, D
     KeyWait, Control, U
     WinGet, class1, ProcessName, A
-    
+
     class1 := "ahk_exe " class1
     MsgBox, 0, Data, Clase 1 guardada, 1
-    
+
     KeyWait, Control, D
     KeyWait, Control, U
     WinGet, class2, ProcessName, A
@@ -427,7 +426,7 @@ return
             }
         }
     }
-    
+
 Return
 ^+!s::
     if WinExist("ahk_exe Teams.exe") {
@@ -439,7 +438,6 @@ Return
         run, C:\Users\raulh\AppData\Local\Microsoft\Teams\Update.exe --processStart "Teams.exe"
     }
 return
-
 
 ^r::reload
 
@@ -465,7 +463,7 @@ return
                 }
                 sleep, 100
             }
-            
+
         }
     }
 Return
