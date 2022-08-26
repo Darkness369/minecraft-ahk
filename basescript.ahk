@@ -1,14 +1,28 @@
 previousTab = ""
-
+;Rbutton::
+;sendInput, {w down}
+;while(true) {
+;sendInput, {shift down}
+;sleep, 35
+;sendInput, {z}
+;sendInput, {rbutton}
+;sleep, 40
+;sendInput, {z}
+;sendInput, {rbutton}
+;sleep, 40
+;sendInput, {z}
+;sendInput, {rbutton}
+;sleep, 40
+;sendInput, {z}
+;sendInput, {rbutton}
+;sleep, 735
+;}
+;return
 ^lbutton::
-sendInput, {alt down}{left}{alt up}
+    sendInput, {alt down}{left}{alt up}
 return
 ^Rbutton::
-sendInput, {alt down}{right}{alt up}
-return
-numlock::
-    WinGet re4_pid, Pid, A
-    process close, %re4_pid%
+    sendInput, {alt down}{right}{alt up}
 return
 :*:pdfcolab::
     keywait, CTRL, D
@@ -30,17 +44,7 @@ return
     sendInput, jupyter nbconvert --to pdf %clipboard%
     sendInput, {ctrl down}{enter}{ctrl up}
 return
-:*:rimraf::
-    sendInput, {home}
-    sleep, 200 
-    sendinput, rimraf .\**\
-return
-:*:guudmail::
-    run, "https://guud.com.mx:2096/cpsess9695194462/3rdparty/roundcube/?_task=mail&_mbox=INBOX"
-return
-:*:guudclickup::
-    run, "https://app.clickup.com/6966894/v/l/6-163193463-1"
-return
+
 :*:npm ::
     sendInput, ^{c}
     sleep, 100
@@ -69,18 +73,32 @@ return
 
 pgdn & Up::
     Run nircmd.exe changebrightness +20
+    sleep, 100
     cbnss:= GetCurrentBrightNess()
     ToolTip, %cbnss%
     SetTimer, RemoveToolTip, 400, 150
 
 return
-
-pgdn & Down::
-    Run nircmd.exe changebrightness -20
+pgdn & Left::
+    Run nircmd.exe changebrightness -110
+    sleep, 100
     cbnss:= GetCurrentBrightNess()
     ToolTip, %cbnss%
     SetTimer, RemoveToolTip, 400, 150
-
+return
+pgdn & Right::
+    Run nircmd.exe changebrightness +110
+    sleep, 100
+    cbnss:= GetCurrentBrightNess()
+    ToolTip, %cbnss%
+    SetTimer, RemoveToolTip, 400, 150
+return
+pgdn & Down::
+    Run nircmd.exe changebrightness -20
+    sleep, 100
+    cbnss:= GetCurrentBrightNess()
+    ToolTip, %cbnss%
+    SetTimer, RemoveToolTip, 400, 150
 return
 
 GetCurrentBrightNess()
@@ -165,22 +183,6 @@ return
         sendInput, {enter}
         Clipboard:= "npm install"
         sendInput, %clipboard%{enter}
-    }
-Return
-:*:get clone::
-    { 
-        sendInput, %Clipboard%{enter}
-        array := StrSplit(Clipboard, "/")
-        fname := array.pop()
-        array2 := StrSplit(fname, ".")
-        fname2 := array2[1]
-        Clipboard:= fname2
-        keywait, appsKey, D
-        keywait, appsKey, U
-        sleep, 100
-        sendInput, cd %Clipboard% & npm install 
-        sleep, 200
-        sendInput, {enter} 
     }
 Return
 
@@ -308,18 +310,19 @@ Rwin::
     whatsapp_path:="C:\Users\facel\AppData\Local\WhatsApp\WhatsApp.exe"
     if WinExist(whatsapp) {
         if(!WinActive(whatsapp)) {
-            WinGet, class1, ProcessName, A
-            class1 := "ahk_exe " class1
-            previousTab = class1
+            WinGet, class2, PID , A
+            previousTab := "ahk_pid " class2
             WinActivate
         }else{
             if WinExist(previousTab){
-                if(WinActive(!previousTab)){
-                    WinActivate
-                }
+                WinActivate
+            }else{
+                previousTab = ""
             }
         }
-    } else {
+    }
+
+    else{
         run %whatsapp_path%
     }
 return
