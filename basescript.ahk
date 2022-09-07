@@ -1,9 +1,9 @@
 previousTab = ""
 
-^lbutton::
+^+lbutton::
     sendInput, {alt down}{left}{alt up}
 return
-^Rbutton::
+^+Rbutton::
     sendInput, {alt down}{right}{alt up}
 return
 :*:pdfcolab::
@@ -286,6 +286,48 @@ rcontrol::
         run %chrome_path%
     }
 return
+ralt::
+    teams:="ahk_exe Teams.exe"
+    teams_path:="C:\Users\rherrera\AppData\Local\Microsoft\Teams\Update.exe"
+    if WinExist(teams) {
+        if(!WinActive(teams)) {
+            WinGet, class1, PID , A
+            previousTab := "ahk_pid " class1
+            WinActivate
+        }else{
+            if WinExist(previousTab){
+                WinActivate
+            }else{
+                previousTab = ""
+            }
+        }
+    }
+
+    else{
+        run %teams_path%
+    }
+return
+appsKey::
+    code:="ahk_exe code.exe"
+    code_path:="C:\Users\rherrera\AppData\Local\Programs\Microsoft VS Code\Code.exe"
+    if WinExist(code) {
+        if(!WinActive(code)) {
+            WinGet, class1, PID , A
+            previousTab := "ahk_pid " class1
+            WinActivate
+        }else{
+            if WinExist(previousTab){
+                WinActivate
+            }else{
+                previousTab = ""
+            }
+        }
+    }
+
+    else{
+        run %code_path%
+    }
+return
 
 Rwin::
     whatsapp:="ahk_exe WhatsApp.exe"
@@ -330,7 +372,7 @@ return
 :*:111@::1118150082@utch.edu.mx
 :*:hemr::HEMR000915HCHRCLA7
 ::numss::63160076053
-::i111::11124429
+:*:i111::11124429
 
 :*:111u::
     sendinput, 1118150082
@@ -371,7 +413,8 @@ return
 return
 
 :*:10010::100101011010110password10010
-:*:1001p::100101011010110Password10010
+:*:10010p::100101011010110Password10010
+:*:dz-::DZ-ECAT2396
 :*:1001m::100101011010110Password100101011010110
 ^+!1::
     sleep, 1000
