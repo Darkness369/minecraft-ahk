@@ -1,0 +1,3 @@
+Lcontrol::
+sendInput, {Lbutton}
+return

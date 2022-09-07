@@ -1,23 +1,5 @@
 previousTab = ""
-;Rbutton::
-;sendInput, {w down}
-;while(true) {
-;sendInput, {shift down}
-;sleep, 35
-;sendInput, {z}
-;sendInput, {rbutton}
-;sleep, 40
-;sendInput, {z}
-;sendInput, {rbutton}
-;sleep, 40
-;sendInput, {z}
-;sendInput, {rbutton}
-;sleep, 40
-;sendInput, {z}
-;sendInput, {rbutton}
-;sleep, 735
-;}
-;return
+
 ^lbutton::
     sendInput, {alt down}{left}{alt up}
 return
@@ -284,10 +266,10 @@ return
 Return
 
 rcontrol::
-    brave:="ahk_exe firefox.exe"
-    brave_path:="C:\Users\facel\AppData\Local\Mozilla Firefox\firefox.exe"
-    if WinExist(brave) {
-        if(!WinActive(brave)) {
+    chrome:="ahk_exe chrome.exe"
+    chrome_path:="C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
+    if WinExist(chrome) {
+        if(!WinActive(chrome)) {
             WinGet, class1, PID , A
             previousTab := "ahk_pid " class1
             WinActivate
@@ -301,7 +283,7 @@ rcontrol::
     }
 
     else{
-        run %brave_path%
+        run %chrome_path%
     }
 return
 
@@ -337,30 +319,19 @@ return
         sleep, 900
     }
 return
-:*:rh@::raul.herrera4@hotmail.com
 :*:rh111::
     sendInput, RH111815008206{#}
 return
 :*:rhm::
     SendInput, Ra{alt down}{Numpad1}{Numpad6}{Numpad3}{alt up}l Herrera Mac{alt down}{Numpad1}{Numpad6}{Numpad1}{alt up}as
 return
-:*:rhg@::rherrera@guud.com.mx
-::sshbp::
-    sendInput, ssh ubuntu@3.17.13.180 -i "C:\Users\facel\Desktop\guudbpkey.pem"
-    sleep, 50
-    sendInput, {enter}
-return
-::sshgcc::
-    sendInput, ssh ubuntu@18.232.139.2 -i "C:\Users\facel\Desktop\GUUD GCC Key.pem"
-    sleep, 50
-    sendInput, {enter}
-return
-:*:rhgp::Raul2024**
-:*:bpw::@A..e..3
+:*:rh@::raul.herrera@autozone.com
 :*:fd@::facelessdivine@gmail.com
 :*:111@::1118150082@utch.edu.mx
 :*:hemr::HEMR000915HCHRCLA7
 ::numss::63160076053
+::i111::11124429
+
 :*:111u::
     sendinput, 1118150082
 Return
