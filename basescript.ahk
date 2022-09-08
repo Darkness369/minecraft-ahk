@@ -6,26 +6,6 @@ return
 ^+Rbutton::
     sendInput, {alt down}{right}{alt up}
 return
-:*:pdfcolab::
-    keywait, CTRL, D
-    keywait, CTRL, U
-    sendInput, {alt down}{numpad3}{numpad3}{alt up}
-    sendInput, sudo apt-get update
-    sendInput, {ctrl down}{enter}{ctrl up}
-    keywait, CTRL, D
-    keywait, CTRL, U
-    sendInput, {alt down}{numpad3}{numpad3}{alt up}
-    sendInput, sudo apt-get install texlive-xetex texlive-fonts-recommended texlive-plain-generic
-    sendInput, {ctrl down}{enter}{ctrl up}
-    keywait, CTRL, D
-    keywait, CTRL, U
-    sendInput, {alt down}{numpad3}{numpad3}{alt up}
-    Clipwait
-    keywait, CTRL, D
-    keywait, CTRL, U
-    sendInput, jupyter nbconvert --to pdf %clipboard%
-    sendInput, {ctrl down}{enter}{ctrl up}
-return
 
 :*:npm ::
     sendInput, ^{c}
