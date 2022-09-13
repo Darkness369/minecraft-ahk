@@ -6,6 +6,40 @@ return
 ^+Rbutton::
     sendInput, {alt down}{right}{alt up}
 return
+f8::
+    while(true){
+        KeyWait, Ctrl, D
+        KeyWait, Ctrl, U 
+        MouseGetPos, x, y, OutputVarWin, OutputVarControl, 
+        ; sendInput, {lbutton 3}
+        sendInput, ^{c}
+        sleep, 50
+        sendInput, !{tab}
+        sleep, 650
+        sendInput, {down 2}
+        sendInput, {home}
+        sendInput, {right}
+        sleep, 55
+        sendInput, ^{v}
+        sleep, 55
+        sendInput, ^{delete}{up}
+        ; {backspace 2}
+        sleep, 55
+        sendInput, {Home}{delete 2}
+        sleep, 55
+        mousemove, 448, 96 , 0
+        click
+        sleep, 60
+        sendInput, {shift down}{end}{shift up}
+        sleep, 100
+        mousemove, 435, 127 , 0
+        click
+        mousemove, x,y+50 , 0
+        sleep, 50
+        sendInput, {down}{delete}{up}
+        sendInput, !{tab}
+    }
+return
 
 :*:npm ::
     sendInput, ^{c}
@@ -393,7 +427,7 @@ return
 return
 
 :*:10010::100101011010110password10010
-:*:10010p::100101011010110Password10010
+:*:1001p::100101011010110Password10010
 :*:dz-::DZ-ECAT2396
 :*:1001m::100101011010110Password100101011010110
 ^+!1::
