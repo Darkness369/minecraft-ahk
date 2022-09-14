@@ -6,6 +6,19 @@ return
 ^+Rbutton::
     sendInput, {alt down}{right}{alt up}
 return
+getCurrentDesktopID(){
+    RegRead, cur, HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\1\VirtualDesktops, CurrentVirtualDesktop
+    RegRead, all, HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\VirtualDesktops, VirtualDesktopIDs
+    ix := floor(InStr(all,cur) / strlen(cur))
+return ix
+}
+
+^#Lbutton::
+    sendInput, {ctrl down}{Lwin down}{left}{ctrl up}{Lwin up}
+return
+^#Rbutton::
+    sendInput, {ctrl down}{Lwin down}{right}{ctrl up}{Lwin up}
+return
 :*:pdfcolab::
     keywait, CTRL, D
     keywait, CTRL, U
