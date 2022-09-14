@@ -19,40 +19,40 @@ return
 ^#Rbutton::
     sendInput, {ctrl down}{Lwin down}{right}{ctrl up}{Lwin up}
 return
-f8::
-    while(true){
-        KeyWait, Ctrl, D
-        KeyWait, Ctrl, U 
-        MouseGetPos, x, y, OutputVarWin, OutputVarControl, 
-        ; sendInput, {lbutton 3}
-        sendInput, ^{c}
-        sleep, 50
-        sendInput, !{tab}
-        sleep, 650
-        sendInput, {down 2}
-        sendInput, {home}
-        sendInput, {right}
-        sleep, 55
-        sendInput, ^{v}
-        sleep, 55
-        sendInput, ^{delete}{up}
-        ; {backspace 2}
-        sleep, 55
-        sendInput, {Home}{delete 2}
-        sleep, 55
-        mousemove, 448, 96 , 0
-        click
-        sleep, 60
-        sendInput, {shift down}{end}{shift up}
-        sleep, 100
-        mousemove, 435, 127 , 0
-        click
-        mousemove, x,y+50 , 0
-        sleep, 50
-        sendInput, {down}{delete}{up}
-        sendInput, !{tab}
-    }
-return
+; f8::
+;     while(true){
+;         KeyWait, Ctrl, D
+;         KeyWait, Ctrl, U 
+;         MouseGetPos, x, y, OutputVarWin, OutputVarControl, 
+;         ; sendInput, {lbutton 3}
+;         sendInput, ^{c}
+;         sleep, 50
+;         sendInput, !{tab}
+;         sleep, 650
+;         sendInput, {down 2}
+;         sendInput, {home}
+;         sendInput, {right}
+;         sleep, 55
+;         sendInput, ^{v}
+;         sleep, 55
+;         sendInput, ^{delete}{up}
+;         ; {backspace 2}
+;         sleep, 55
+;         sendInput, {Home}{delete 2}
+;         sleep, 55
+;         mousemove, 448, 96 , 0
+;         click
+;         sleep, 60
+;         sendInput, {shift down}{end}{shift up}
+;         sleep, 100
+;         mousemove, 435, 127 , 0
+;         click
+;         mousemove, x,y+50 , 0
+;         sleep, 50
+;         sendInput, {down}{delete}{up}
+;         sendInput, !{tab}
+;     }
+; return
 
 :*:npm ::
     sendInput, ^{c}
@@ -68,6 +68,11 @@ return
     keywait, CTRL, D
     keywait, CTRL, U
     sendInput, " {enter}
+    keywait, CTRL, D
+    keywait, CTRL, U
+    Clipboard:= "git push"
+    sendInput, ^{v} {enter}
+
 return
 
 :*:npmd::
@@ -149,18 +154,6 @@ return
         Run, https://www.y2mate.com/youtube/%id%
         Return
     }
-^+!z::
-    {
-        id:= "https://us05web.zoom.us/j/88390008320?pwd=YzNaZXpCWmhXb1Rkb2Y2UmhIVi9oUT09"
-        Run, %id%
-        Return
-    }
-^+!x::
-    {
-        id:= "https://itesm.zoom.us/j/5173749162"
-        Run, %id%
-        Return
-    }
 
 ^+c::
     {
@@ -172,26 +165,21 @@ return
 
 :*:git clone::
     { 
-
         url:= clipboard
-        clipboard:=""
-        clipwait
-        keywait, appsKey, D
-        keywait, appsKey, U
-        sendInput, git clone %url% -b %clipboard%
+        keywait, ctrl, D
+        keywait, ctrl, U
+        clipboard:= "git clone " url
+        sendInput, %clipboard% {enter}
         array := StrSplit(url, "/")
         fname := array.pop()
         array2 := StrSplit(fname, ".")
         fname2 := array2[1]
         Clipboard:= fname2
-        keywait, appsKey, D
-        keywait, appsKey, U
-        sleep, 100
-        sendInput, cd %clipboard% 
-        sleep, 200
-        sendInput, {enter}
-        Clipboard:= "npm install"
-        sendInput, %clipboard%{enter}
+        keywait, ctrl, D
+        keywait, ctrl, U
+        sendInput, cd %clipboard% {enter}
+        sleep, 800
+        sendInput, code . {enter}
     }
 Return
 
@@ -268,8 +256,6 @@ return
         MouseMove, %DrawX%, %DrawY%, 0
     }
     MouseClick, Left, , , , 0, U
-    ; r is radius of circle, nLaps is number of laps to turn, can be -1 for keep on going until lbutton is released.
-    ; Set direction via, dir. dir:=1 is clockwise, dir:=-1 is counter-clockwise
     sleep, 100
     BlockInput, ON
     r:=100, speed:=0, nLaps:=1, dir:=-1
