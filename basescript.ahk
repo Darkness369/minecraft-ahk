@@ -19,26 +19,6 @@ return
 ^#Rbutton::
     sendInput, {ctrl down}{Lwin down}{right}{ctrl up}{Lwin up}
 return
-:*:pdfcolab::
-    keywait, CTRL, D
-    keywait, CTRL, U
-    sendInput, {alt down}{numpad3}{numpad3}{alt up}
-    sendInput, sudo apt-get update
-    sendInput, {ctrl down}{enter}{ctrl up}
-    keywait, CTRL, D
-    keywait, CTRL, U
-    sendInput, {alt down}{numpad3}{numpad3}{alt up}
-    sendInput, sudo apt-get install texlive-xetex texlive-fonts-recommended texlive-plain-generic
-    sendInput, {ctrl down}{enter}{ctrl up}
-    keywait, CTRL, D
-    keywait, CTRL, U
-    sendInput, {alt down}{numpad3}{numpad3}{alt up}
-    Clipwait
-    keywait, CTRL, D
-    keywait, CTRL, U
-    sendInput, jupyter nbconvert --to pdf %clipboard%
-    sendInput, {ctrl down}{enter}{ctrl up}
-return
 
 :*:npm ::
     sendInput, ^{c}
@@ -54,6 +34,13 @@ return
     keywait, CTRL, D
     keywait, CTRL, U
     sendInput, " {enter}
+    keywait, CTRL, D
+    keywait, CTRL, U
+    Clipboard:= "git push"
+    sendInput, ^{v} 
+    sleep, 50
+    sendInput, {enter}
+
 return
 
 :*:npmd::
@@ -117,14 +104,14 @@ return
         Run, %clipboard%
         Return
     }
-^+y::
+^+y:: ;select a query and run this macro to search in youtube. Opens browser if is closed
     {
         SendInput, ^c
         Sleep 100
         Run, https://www.youtube.com/results?search_query=%clipboard%
         Return
     }
-^+!y::
+^+!y:: ;Copy a youtube path and run this hotkey
     {
         SendInput, ^c
         Sleep 100
@@ -135,20 +122,8 @@ return
         Run, https://www.y2mate.com/youtube/%id%
         Return
     }
-^+!z::
-    {
-        id:= "https://us05web.zoom.us/j/88390008320?pwd=YzNaZXpCWmhXb1Rkb2Y2UmhIVi9oUT09"
-        Run, %id%
-        Return
-    }
-^+!x::
-    {
-        id:= "https://itesm.zoom.us/j/5173749162"
-        Run, %id%
-        Return
-    }
 
-^+c::
+^+c:: ;select a google search and run this macro to search in
     {
         SendInput, ^c
         Sleep 100
@@ -156,26 +131,28 @@ return
         Return
     }
 
-:*:git clone::
-    { 
+:*:git clone:: ;copy a github url, go to your terminal and type git clone, then press ctrl when the repo is fully downloaded, then press contol again to get into the folder with the repo name
 
+    { 
         url:= clipboard
+<<<<<<< HEAD
+        clipboard:= "git clone " url
+        sendInput, %clipboard% {enter}
+=======
         keywait, appsKey, D
         keywait, appsKey, U
         clipboard:= git clone %url%
+>>>>>>> main
         array := StrSplit(url, "/")
         fname := array.pop()
         array2 := StrSplit(fname, ".")
         fname2 := array2[1]
         Clipboard:= fname2
-        keywait, appsKey, D
-        keywait, appsKey, U
-        sleep, 100
-        sendInput, cd %clipboard% 
-        sleep, 200
-        sendInput, {enter}
-        Clipboard:= "npm install"
-        sendInput, %clipboard%{enter}
+        keywait, ctrl, D
+        keywait, ctrl, U
+        sendInput, cd %clipboard% {enter}
+        sleep, 800
+        sendInput, code . {enter}
     }
 Return
 
@@ -186,7 +163,7 @@ Return
     run, C:\Users\facel\OneDrive\Desktop\scripts\minecraft-ahk\Minecraft.ahk
 ExitApp, 0
 return
-::inpy::
+::inpy:: ;autologin when proyecta page is in the screen
     sleep, 100
     sendInput, {tab 2}
     sleep, 50
@@ -207,16 +184,6 @@ return
     sendInput, {enter}
 return
 
-:*:psql1::
-    sendInput, psql -U postgres
-    sendInput, {enter}
-    sleep, 10
-    sendInput, Password44
-    sendInput, {enter}
-return
-
-return
-
 :*:ps44::
     sendInput, Password44
     sendInput, {enter}
@@ -225,7 +192,7 @@ return
     sendInput, git status
     sendInput, {enter}
 return
-^+!Lbutton::
+^+!Lbutton:: ;draw a circle, beta
     sendInput, ^e
     sendInput, {delete}
     MouseGetPos, X, Y
@@ -252,8 +219,6 @@ return
         MouseMove, %DrawX%, %DrawY%, 0
     }
     MouseClick, Left, , , , 0, U
-    ; r is radius of circle, nLaps is number of laps to turn, can be -1 for keep on going until lbutton is released.
-    ; Set direction via, dir. dir:=1 is clockwise, dir:=-1 is counter-clockwise
     sleep, 100
     BlockInput, ON
     r:=100, speed:=0, nLaps:=1, dir:=-1
@@ -315,7 +280,8 @@ ralt::
     }
 
     else{
-        run %teams_path%
+        MsgBox, 1, Abriendo teams, Hola, 3
+        run, C:\Users\rherrera\AppData\Local\Microsoft\Teams\current\Teams.exe
     }
 return
 appsKey::
@@ -391,13 +357,13 @@ Return
 Mbutton::
     if winactive("ahk_exe brave.exe") or winactive("ahk_exe opera.exe") or winactive("ahk_exe Code.exe")or winactive("ahk_exe chrome.exe")or winactive("ahk_exe firefox.exe"){
         send, ^{w}
-    }else if winactive("ahk_exe javaw.exe") {
+    }else if winactive("ahk_exe javaw.exe") { ;Minecraft
         send, {z}
     }
     else if winactive("ahk_exe WindowsTerminal.exe") {
         send, ^+{w}
     }
-    else if winactive("ahk_class Progman") or winactive("ahk_class WorkerW") {
+    else if winactive("ahk_class Progman") or winactive("ahk_class WorkerW") { ;desktop, opens the file explorer
         send, #{e}
     } else {
         send, !{f4}
@@ -424,38 +390,10 @@ return
 return
 
 :*:10010::100101011010110password10010
-:*:10010p::100101011010110Password10010
+:*:1001p::100101011010110Password10010
 :*:dz-::DZ-ECAT2396
 :*:1001m::100101011010110Password100101011010110
-^+!1::
-    sleep, 1000
-    KeyWait, Control, D
-    KeyWait, Control, U
-    WinGet, class1, ProcessName, A
 
-    class1 := "ahk_exe " class1
-    MsgBox, 0, Data, Clase 1 guardada, 1
-
-    KeyWait, Control, D
-    KeyWait, Control, U
-    WinGet, class2, ProcessName, A
-    class2 := "ahk_exe " class2
-    MsgBox, 0, Data, Clase 2 guardada, 1
-    while (True) {
-        KeyWait, Alt, D
-        KeyWait, Alt, U
-        if winactive(class1) {
-            if WinExist(class2) {
-                WinActivate
-            }
-        } else {
-            if WinExist(class1) {
-                WinActivate
-            }
-        }
-    }
-
-Return
 ^+!s::
     if WinExist("ahk_exe Teams.exe") {
         if(WinActive()) {
@@ -469,32 +407,6 @@ return
 
 ^r::reload
 
-^+!9::
-    MsgBox, 0, búsqueda persistente Microsoft Teams, Enabled, 2
-    sleep, 400
-    while (true) {
-        ImageSearch, x, y, 0, 0, 1366, 768, C:\Users\raulh\Pictures\unirse.png
-        if(x > 0) {
-            a:=True
-            x+=15
-            y+=15
-            Mousemove, x, y
-            Click, Left
-            while (!b) {
-                ImageSearch, x2, y2, 0, 0, 1366, 768, C:\Users\raulh\Pictures\unirteahora.png
-                if(x2 > 0) {
-                    b:= True
-                    x2+=15
-                    y2+=15
-                    Mousemove, x2, y2
-                    Click, Left
-                }
-                sleep, 100
-            }
-
-        }
-    }
-Return
 ^+1::
     sleep, 1000
     while (true) {
