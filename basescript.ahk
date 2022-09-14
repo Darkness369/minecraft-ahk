@@ -136,14 +136,14 @@ return
         Run, %clipboard%
         Return
     }
-^+y::
+^+y:: ;select a query and run this macro to search in youtube. Opens browser if is closed
     {
         SendInput, ^c
         Sleep 100
         Run, https://www.youtube.com/results?search_query=%clipboard%
         Return
     }
-^+!y::
+^+!y:: ;Copy a youtube path and run this hotkey
     {
         SendInput, ^c
         Sleep 100
@@ -155,7 +155,7 @@ return
         Return
     }
 
-^+c::
+^+c:: ;select a google search and run this macro to search in
     {
         SendInput, ^c
         Sleep 100
@@ -163,11 +163,10 @@ return
         Return
     }
 
-:*:git clone::
+:*:git clone:: ;copy a github url, go to your terminal and type git clone, then press ctrl when the repo is fully downloaded, then press contol again to get into the folder with the repo name
+
     { 
         url:= clipboard
-        keywait, ctrl, D
-        keywait, ctrl, U
         clipboard:= "git clone " url
         sendInput, %clipboard% {enter}
         array := StrSplit(url, "/")
@@ -190,7 +189,7 @@ Return
     run, C:\Users\facel\OneDrive\Desktop\scripts\minecraft-ahk\Minecraft.ahk
 ExitApp, 0
 return
-::inpy::
+::inpy:: ;autologin when proyecta page is in the screen
     sleep, 100
     sendInput, {tab 2}
     sleep, 50
@@ -211,16 +210,6 @@ return
     sendInput, {enter}
 return
 
-:*:psql1::
-    sendInput, psql -U postgres
-    sendInput, {enter}
-    sleep, 10
-    sendInput, Password44
-    sendInput, {enter}
-return
-
-return
-
 :*:ps44::
     sendInput, Password44
     sendInput, {enter}
@@ -229,7 +218,7 @@ return
     sendInput, git status
     sendInput, {enter}
 return
-^+!Lbutton::
+^+!Lbutton:: ;draw a circle, beta
     sendInput, ^e
     sendInput, {delete}
     MouseGetPos, X, Y
@@ -394,13 +383,13 @@ Return
 Mbutton::
     if winactive("ahk_exe brave.exe") or winactive("ahk_exe opera.exe") or winactive("ahk_exe Code.exe")or winactive("ahk_exe chrome.exe")or winactive("ahk_exe firefox.exe"){
         send, ^{w}
-    }else if winactive("ahk_exe javaw.exe") {
+    }else if winactive("ahk_exe javaw.exe") { ;Minecraft
         send, {z}
     }
     else if winactive("ahk_exe WindowsTerminal.exe") {
         send, ^+{w}
     }
-    else if winactive("ahk_class Progman") or winactive("ahk_class WorkerW") {
+    else if winactive("ahk_class Progman") or winactive("ahk_class WorkerW") { ;desktop, opens the file explorer
         send, #{e}
     } else {
         send, !{f4}
@@ -430,35 +419,7 @@ return
 :*:1001p::100101011010110Password10010
 :*:dz-::DZ-ECAT2396
 :*:1001m::100101011010110Password100101011010110
-^+!1::
-    sleep, 1000
-    KeyWait, Control, D
-    KeyWait, Control, U
-    WinGet, class1, ProcessName, A
 
-    class1 := "ahk_exe " class1
-    MsgBox, 0, Data, Clase 1 guardada, 1
-
-    KeyWait, Control, D
-    KeyWait, Control, U
-    WinGet, class2, ProcessName, A
-    class2 := "ahk_exe " class2
-    MsgBox, 0, Data, Clase 2 guardada, 1
-    while (True) {
-        KeyWait, Alt, D
-        KeyWait, Alt, U
-        if winactive(class1) {
-            if WinExist(class2) {
-                WinActivate
-            }
-        } else {
-            if WinExist(class1) {
-                WinActivate
-            }
-        }
-    }
-
-Return
 ^+!s::
     if WinExist("ahk_exe Teams.exe") {
         if(WinActive()) {
@@ -472,32 +433,6 @@ return
 
 ^r::reload
 
-^+!9::
-    MsgBox, 0, búsqueda persistente Microsoft Teams, Enabled, 2
-    sleep, 400
-    while (true) {
-        ImageSearch, x, y, 0, 0, 1366, 768, C:\Users\raulh\Pictures\unirse.png
-        if(x > 0) {
-            a:=True
-            x+=15
-            y+=15
-            Mousemove, x, y
-            Click, Left
-            while (!b) {
-                ImageSearch, x2, y2, 0, 0, 1366, 768, C:\Users\raulh\Pictures\unirteahora.png
-                if(x2 > 0) {
-                    b:= True
-                    x2+=15
-                    y2+=15
-                    Mousemove, x2, y2
-                    Click, Left
-                }
-                sleep, 100
-            }
-
-        }
-    }
-Return
 ^+1::
     sleep, 1000
     while (true) {
