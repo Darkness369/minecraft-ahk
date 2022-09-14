@@ -71,7 +71,9 @@ return
     keywait, CTRL, D
     keywait, CTRL, U
     Clipboard:= "git push"
-    sendInput, ^{v} {enter 2}
+    sendInput, ^{v} 
+    sleep, 50
+    sendInput, {enter}
 
 return
 
