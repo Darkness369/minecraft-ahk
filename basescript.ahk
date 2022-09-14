@@ -19,40 +19,7 @@ return
 ^#Rbutton::
     sendInput, {ctrl down}{Lwin down}{right}{ctrl up}{Lwin up}
 return
-; f8::
-;     while(true){
-;         KeyWait, Ctrl, D
-;         KeyWait, Ctrl, U 
-;         MouseGetPos, x, y, OutputVarWin, OutputVarControl, 
-;         ; sendInput, {lbutton 3}
-;         sendInput, ^{c}
-;         sleep, 50
-;         sendInput, !{tab}
-;         sleep, 650
-;         sendInput, {down 2}
-;         sendInput, {home}
-;         sendInput, {right}
-;         sleep, 55
-;         sendInput, ^{v}
-;         sleep, 55
-;         sendInput, ^{delete}{up}
-;         ; {backspace 2}
-;         sleep, 55
-;         sendInput, {Home}{delete 2}
-;         sleep, 55
-;         mousemove, 448, 96 , 0
-;         click
-;         sleep, 60
-;         sendInput, {shift down}{end}{shift up}
-;         sleep, 100
-;         mousemove, 435, 127 , 0
-;         click
-;         mousemove, x,y+50 , 0
-;         sleep, 50
-;         sendInput, {down}{delete}{up}
-;         sendInput, !{tab}
-;     }
-; return
+
 
 :*:npm ::
     sendInput, ^{c}
@@ -366,18 +333,10 @@ return
         sleep, 900
     }
 return
-:*:rh111::
-    sendInput, RH111815008206{#}
-return
 :*:rhm::
     SendInput, Ra{alt down}{Numpad1}{Numpad6}{Numpad3}{alt up}l Herrera Mac{alt down}{Numpad1}{Numpad6}{Numpad1}{alt up}as
 return
-:*:rh@::raul.herrera@autozone.com
-:*:fd@::facelessdivine@gmail.com
-:*:111@::1118150082@utch.edu.mx
-:*:hemr::HEMR000915HCHRCLA7
-::numss::63160076053
-:*:i111::11124429
+
 
 :*:111u::
     sendinput, 1118150082
@@ -417,10 +376,6 @@ return
     sendInput %mesCompleto%-%dia2%-%ano%
 return
 
-:*:10010::100101011010110password10010
-:*:1001p::100101011010110Password10010
-:*:dz-::DZ-ECAT2396
-:*:1001m::100101011010110Password100101011010110
 
 ^+!s::
     if WinExist("ahk_exe Teams.exe") {
