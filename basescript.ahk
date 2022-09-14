@@ -14,22 +14,10 @@ return ix
 }
 
 ^#Lbutton::
-    ; ix:=getCurrentDesktopID()
-    ; if(ix==0){
-    ;     sendInput, {ctrl down}{Lwin down}{right}{ctrl up}{Lwin up}
-    ; }
-    ; else{
     sendInput, {ctrl down}{Lwin down}{left}{ctrl up}{Lwin up}
-    ; }
 return
 ^#Rbutton::
-    ; ix:=getCurrentDesktopID()
-    ; if(ix==2){
-    ;     sendInput, {ctrl down}{Lwin down}{left}{ctrl up}{Lwin up}
-    ; }
-    ; else{
     sendInput, {ctrl down}{Lwin down}{right}{ctrl up}{Lwin up}
-    ; }
 return
 f8::
     while(true){
