@@ -1,3 +1,0 @@
-Lcontrol::
-sendInput, {Lbutton}
-return
