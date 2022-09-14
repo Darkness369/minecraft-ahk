@@ -147,11 +147,9 @@ return
     { 
 
         url:= clipboard
-        clipboard:=""
-        clipwait
         keywait, appsKey, D
         keywait, appsKey, U
-        sendInput, git clone %url% -b %clipboard%
+        clipboard:= git clone %url%
         array := StrSplit(url, "/")
         fname := array.pop()
         array2 := StrSplit(fname, ".")
