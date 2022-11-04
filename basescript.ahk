@@ -1,4 +1,70 @@
+#SingleInstance Force
+#Persistent
+^!+j::
+    count:= 10000
+    c = 0
+    while(c < count){
+        c++
+        sendInput, lorem ipsum bien largo wey
+    }
+return
 previousTab = ""
+^Lbutton::
+    if(WinActive("ahk_exe brave.exe")){
+        sendInput, {ctrl down}{shift down}{tab}{ctrl up}{shift up}
+    }
+return
+^Rbutton::
+    if(WinActive("ahk_exe brave.exe")){
+        sendInput, {ctrl down}{tab}{ctrl up}
+    }
+return
+PgDn & NumLock::
+    sendInput, ^+{a}
+    sleep, 250
+    sendInput, netflix
+    sleep, 300
+    sendInput, {enter}
+return
+SetTimer, autoLoginDz, 500
+ClickAndBack(){
+persistSkip:
+    ImageSearch, x, y, 0, 0, 1366, 768, C:\Users\facel\OneDrive\Desktop\AutoHotKey\\basescript-ahk\files\skipintro.png
+    if(x>0){
+        blockinput, on
+        MouseGetPos, xo, yo, , , 
+        mousemove, x,y,4
+        click
+        sleep, 10
+        mousemove, xo,yo,4
+        blockinput, off
+
+    }
+return
+}
+autoLoginRemoteDz(){
+autoLoginDz:
+    msgbox, hola
+    ImageSearch, x, y, 0, 0, 1366, 768, C:\Users\facel\OneDrive\Desktop\AutoHotKey\basescript-ahk\files\remotelogin.png
+    if(x > 0){
+        ; MsgBox, [ Options, Title, Text, Timeout]  
+        blockInput, on
+        mousemove, 173, 210 , 0
+        click
+        sleep, 500
+        mousemove, 250, 500 , 0
+        Clipboard:= "100101011010110Password10010"
+        sleep, 500
+        sendInput, ^{v}
+        sleep, 500
+        sendInput, {enter}
+        x:=0
+        y:=0
+        blockInput, off
+        sleep, 5000
+    }
+return
+}
 
 ^+lbutton::
     sendInput, {alt down}{left}{alt up}
@@ -20,15 +86,6 @@ return
     sendInput, {ctrl down}{Lwin down}{right}{ctrl up}{Lwin up}
 return
 
-:*:npm ::
-    sendInput, ^{c}
-    sleep, 100
-    sendInput, ^{c}
-    sleep, 100
-    sendInput, ^{c}
-    sleep, 20
-    sendInput, cls & npm start {enter}
-return
 ::comit:: 
     sendInput, git commit -a -m "
     keywait, CTRL, D
@@ -52,7 +109,15 @@ return
     sendInput, npm run dev
     sendInput, {enter}
 return
-
+:*:npmb::
+    sendInput, ^{c}
+    sleep, 100
+    sendInput, ^{c}
+    sleep, 100
+    sendInput, ^{c}
+    sendInput, npm run build
+    sendInput, {enter}
+return
 pgdn & Up::
     Run nircmd.exe changebrightness +20
     sleep, 100
@@ -135,14 +200,9 @@ return
 
     { 
         url:= clipboard
-<<<<<<< HEAD
-        clipboard:= "git clone " url
-        sendInput, %clipboard% {enter}
-=======
-        keywait, appsKey, D
-        keywait, appsKey, U
-        clipboard:= git clone %url%
->>>>>>> main
+        sendInput, git clone %clipboard% {enter}
+        keywait, ctrl, D
+        keywait, ctrl, U
         array := StrSplit(url, "/")
         fname := array.pop()
         array2 := StrSplit(fname, ".")
@@ -242,8 +302,8 @@ return
 Return
 
 rcontrol::
-    chrome:="ahk_exe chrome.exe"
-    chrome_path:="C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
+    chrome:="ahk_exe brave.exe"
+    chrome_path:="C:\Program Files\BraveSoftware\Brave-Browser\Application\brave.exe"
     if WinExist(chrome) {
         if(!WinActive(chrome)) {
             WinGet, class1, PID , A
@@ -282,27 +342,6 @@ ralt::
     else{
         MsgBox, 1, Abriendo teams, Hola, 3
         run, C:\Users\rherrera\AppData\Local\Microsoft\Teams\current\Teams.exe
-    }
-return
-appsKey::
-    code:="ahk_exe code.exe"
-    code_path:="C:\Users\rherrera\AppData\Local\Programs\Microsoft VS Code\Code.exe"
-    if WinExist(code) {
-        if(!WinActive(code)) {
-            WinGet, class1, PID , A
-            previousTab := "ahk_pid " class1
-            WinActivate
-        }else{
-            if WinExist(previousTab){
-                WinActivate
-            }else{
-                previousTab = ""
-            }
-        }
-    }
-
-    else{
-        run %code_path%
     }
 return
 
@@ -346,6 +385,7 @@ return
 return
 :*:rh@::raul.herrera@autozone.com
 :*:fd@::facelessdivine@gmail.com
+:*:fdg@::facelessdivinegod@gmail.com
 :*:111@::1118150082@utch.edu.mx
 :*:hemr::HEMR000915HCHRCLA7
 ::numss::63160076053
@@ -355,10 +395,8 @@ return
     sendinput, 1118150082
 Return
 Mbutton::
-    if winactive("ahk_exe brave.exe") or winactive("ahk_exe opera.exe") or winactive("ahk_exe Code.exe")or winactive("ahk_exe chrome.exe")or winactive("ahk_exe firefox.exe"){
+    if winactive("ahk_exe brave.exe") or winactive("ahk_exe Code.exe")or winactive("ahk_exe chrome.exe")or winactive("ahk_exe firefox.exe"){
         send, ^{w}
-    }else if winactive("ahk_exe javaw.exe") { ;Minecraft
-        send, {z}
     }
     else if winactive("ahk_exe WindowsTerminal.exe") {
         send, ^+{w}
@@ -390,7 +428,10 @@ return
 return
 
 :*:10010::100101011010110password10010
-:*:1001p::100101011010110Password10010
+:*:1001p::
+    sendInput, 100101011010110Password10010
+    sendInput, {enter}
+return
 :*:dz-::DZ-ECAT2396
 :*:1001m::100101011010110Password100101011010110
 
