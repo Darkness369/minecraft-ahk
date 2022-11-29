@@ -1,69 +1,177 @@
 #SingleInstance Force
 #Persistent
-^!+j::
-    count:= 10000
-    c = 0
-    while(c < count){
-        c++
-        sendInput, lorem ipsum bien largo wey
-    }
-return
-previousTab = ""
-^Lbutton::
-    if(WinActive("ahk_exe brave.exe")){
-        sendInput, {ctrl down}{shift down}{tab}{ctrl up}{shift up}
-    }
-return
-^Rbutton::
-    if(WinActive("ahk_exe brave.exe")){
-        sendInput, {ctrl down}{tab}{ctrl up}
-    }
-return
-PgDn & NumLock::
-    sendInput, ^+{a}
-    sleep, 250
-    sendInput, netflix
-    sleep, 300
-    sendInput, {enter}
-return
 SetTimer, autoLoginDz, 500
-ClickAndBack(){
-persistSkip:
-    ImageSearch, x, y, 0, 0, 1366, 768, C:\Users\facel\OneDrive\Desktop\AutoHotKey\\basescript-ahk\files\skipintro.png
-    if(x>0){
-        blockinput, on
-        MouseGetPos, xo, yo, , , 
-        mousemove, x,y,4
-        click
-        sleep, 10
-        mousemove, xo,yo,4
-        blockinput, off
+SetTimer, autoSkipIntro, 500
+^+!o::
+    BlockInput, MouseMove
+return
+; Lbutton::
+;     SendInput, {LButton}
+;     MouseGetPos, x, y, , , 
+;     mousemove, x+600, y , 0
+;     sleep, 50
+;     sendInput, {lbutton} ^{v}
+;     sleep, 50
+;     y+=100
+;     sendInput, {down 2}
+;     mousemove, %x%, %y% , 0
+; return
+::simon::
+    list := []
+    x := []
+    y := []
+    ;red
+    x[0] := 522
+    y[0] := 233
+    ;orange
+    x[1] := 852
+    y[1] := 236
+    ;green
+    x[2] := 527
+    y[2] := 512
+    ;blue
+    x[3] := 825
+    y[3] := 469
+    while(true){
+        InputBox, input, Input, , , , , 1
+        sleep, 500
+        list.push(input)
+        sleep, 500
+        for i, v in list {
+            index := list[i]
+            sx:= x[index]
+            sy:= y[index]
+            MouseMove, sx,sy, 0
+            sleep, 50
+            sendInput, {lbutton}
+            sleep, 150
+        }
 
     }
+
+return
+`;::
+if(!WinExist("ahk_exe Code.exe"))
+{
+    sendInput, {alt down}{Numpad5}{Numpad9}{AltUp}
 return
 }
-autoLoginRemoteDz(){
-autoLoginDz:
-    msgbox, hola
-    ImageSearch, x, y, 0, 0, 1366, 768, C:\Users\facel\OneDrive\Desktop\AutoHotKey\basescript-ahk\files\remotelogin.png
-    if(x > 0){
-        ; MsgBox, [ Options, Title, Text, Timeout]  
-        blockInput, on
-        mousemove, 173, 210 , 0
-        click
-        sleep, 500
-        mousemove, 250, 500 , 0
-        Clipboard:= "100101011010110Password10010"
-        sleep, 500
-        sendInput, ^{v}
-        sleep, 500
-        sendInput, {enter}
-        x:=0
-        y:=0
-        blockInput, off
-        sleep, 5000
-    }
+if(WinActive("ahk_exe Code.exe")){
+    sendInput, {end}{alt down}{Numpad5}{Numpad9}{AltUp}
+}
 return
+:*:{::
+        if(!WinExist("ahk_exe Code.exe"))
+        {
+            sendInput, {alt down}{Numpad1}{Numpad2}{Numpad3}{AltUp}
+            return
+        }
+        if(WinActive("ahk_exe Code.exe")){
+            sendInput, {end}{alt down}{Numpad1}{Numpad2}{Numpad3}{AltUp}
+        }
+    return
+    :*:amend::
+        sendinput, git commit --amend "
+        keyWait, CTRL, D
+        keyWait, CTRL, U
+        sleep, 50
+        sendInput, " {enter}
+        sleep, 100
+        sendInput, git push {enter}
+        sleep, 100
+    return
+    ::ti.u::
+        run, https://ti.utch.edu.mx/
+    return
+    ; Lbutton::
+    ;     sendInput, {Lbutton}
+    ;     sleep, 100
+    ;     ; image search 
+    ;     ImageSearch, x, y, 0, 0, 1366, 768, C:\Users\facel\OneDrive\Desktop\AutoHotKey\basescript-ahk\files\nextpageexam.png
+    ;     if(x>0){
+    ;         x:=x+10
+    ;         y:=y+10
+    ;         mousemove, x,y,0
+    ;         sleep, 50
+    ;         sendInput, {Lbutton}
+    ;         ;
+    ;         ; mousemove, 890,690,0
+    ;         ; sleep, 100
+    ;         ; click
+    ;         sleep, 1450
+    ;         sendInput, {Down 3}
+
+    ;     }
+    ; return
+    autoSkipIntro(){
+        ImageSearch, x, y, 0, 0, 1366, 768, files/skipintro.png
+        if(x > 0){
+            mousemove, x, y, 0
+            sleep, 50
+            sendInput, {Lbutton}
+            sleep, 3000
+        }
+    }
+    ::gdev::
+        sendInput, !{d}
+        sleep, 100
+        sendInput, {home}
+        sleep, 100
+        sendInput, vscode.dev/ {enter}
+    return
+    previousTab = ""
+    ^Lbutton::
+        if(WinActive("ahk_exe brave.exe")){
+            sendInput, {ctrl down}{shift down}{tab}{ctrl up}{shift up}
+        }
+    return
+    ^Rbutton::
+        if(WinActive("ahk_exe brave.exe")){
+            sendInput, {ctrl down}{tab}{ctrl up}
+        }
+    return
+    PgDn & NumLock::
+        sendInput, ^+{a}
+        sleep, 450
+        sendInput, crunchyroll
+        sleep, 450
+        sendInput, {enter}
+    return
+    ClickAndBack(){
+    persistSkip:
+        ImageSearch, x, y, 0, 0, 1366, 768, C:\Users\facel\OneDrive\Desktop\AutoHotKey\basescript-ahk\files\skipintro.png
+        if(x>0){
+            blockinput, on
+            MouseGetPos, xo, yo, , , 
+            mousemove, x,y,4
+            click
+            sleep, 10
+            mousemove, xo,yo,4
+            blockinput, off
+
+        }
+    return
+}
+autoLoginRemoteDz(){
+    autoLoginDz:
+
+        if(WinActive("ahk_exe CredentialUIBroker.exe")){ 
+            blockInput, on
+            mousemove, 173, 210 , 0
+            click
+            sleep, 500
+            mousemove, 250, 500 , 0
+            Clipboard:= "100101011010110Password10010"
+            sleep, 500
+            sendInput, ^{v}
+            sleep, 500
+            sendInput, {enter}
+            x:=0
+            y:=0
+            blockInput, off
+            sleep, 5000
+        }
+    return
 }
 
 ^+lbutton::
@@ -87,13 +195,13 @@ return
 return
 
 ::comit:: 
-    sendInput, git commit -a -m "
+    sendInput, git commit -am "
     keywait, CTRL, D
     keywait, CTRL, U
     sendInput, " {enter}
     keywait, CTRL, D
     keywait, CTRL, U
-    Clipboard:= "git push"
+    Clipboard:= "git pull `;` git push"
     sendInput, ^{v} 
     sleep, 50
     sendInput, {enter}
@@ -106,8 +214,7 @@ return
     sendInput, ^{c}
     sleep, 100
     sendInput, ^{c}
-    sendInput, npm run dev
-    sendInput, {enter}
+    sendInput, npm run dev {enter}
 return
 :*:npmb::
     sendInput, ^{c}
@@ -115,8 +222,7 @@ return
     sendInput, ^{c}
     sleep, 100
     sendInput, ^{c}
-    sendInput, npm run build
-    sendInput, {enter}
+    sendInput, npm run build {enter}
 return
 pgdn & Up::
     Run nircmd.exe changebrightness +20
@@ -224,6 +330,9 @@ Return
 ExitApp, 0
 return
 ::inpy:: ;autologin when proyecta page is in the screen
+    run, https://www.proyecta.utch.edu.mx
+    keywait, ctrl, D
+    keywait, ctrl, U
     sleep, 100
     sendInput, {tab 2}
     sleep, 50
@@ -240,7 +349,7 @@ return
     keywait, ctrl, U
     sendInput, {alt down}{d}{alt up}
     sleep, 50
-    sendInput, https://proyecta.utch.edu.mx/salumno/informacion
+    sendInput, https://www.proyecta.utch.edu.mx/salumno/informacion
     sendInput, {enter}
 return
 
@@ -302,10 +411,10 @@ return
 Return
 
 rcontrol::
-    chrome:="ahk_exe brave.exe"
-    chrome_path:="C:\Program Files\BraveSoftware\Brave-Browser\Application\brave.exe"
-    if WinExist(chrome) {
-        if(!WinActive(chrome)) {
+    brave:="ahk_exe brave.exe"
+    brave_path:="C:\Program Files\BraveSoftware\Brave-Browser\Application\brave.exe"
+    if WinExist(brave) {
+        if(!WinActive(brave)) {
             WinGet, class1, PID , A
             previousTab := "ahk_pid " class1
             WinActivate
@@ -319,14 +428,14 @@ rcontrol::
     }
 
     else{
-        run %chrome_path%
+        run %brave_path%
     }
 return
-ralt::
-    teams:="ahk_exe Teams.exe"
-    teams_path:="C:\Users\rherrera\AppData\Local\Microsoft\Teams\Update.exe"
-    if WinExist(teams) {
-        if(!WinActive(teams)) {
+AppsKey::
+    discord:="ahk_exe discord.exe"
+    discord_path:="C:\Users\facel\AppData\Local\Discord\Update.exe --processStart Discord.exe"
+    if WinExist(discord) {
+        if(!WinActive(discord)) {
             WinGet, class1, PID , A
             previousTab := "ahk_pid " class1
             WinActivate
@@ -340,8 +449,7 @@ ralt::
     }
 
     else{
-        MsgBox, 1, Abriendo teams, Hola, 3
-        run, C:\Users\rherrera\AppData\Local\Microsoft\Teams\current\Teams.exe
+        run %discord_path%
     }
 return
 
@@ -430,7 +538,9 @@ return
 :*:10010::100101011010110password10010
 :*:1001p::
     sendInput, 100101011010110Password10010
-    sendInput, {enter}
+return
+:*:1001d::
+    sendInput, 100101011010110Password10010@@
 return
 :*:dz-::DZ-ECAT2396
 :*:1001m::100101011010110Password100101011010110
@@ -446,7 +556,7 @@ return
     }
 return
 
-^r::reload
+^+r::reload
 
 ^+1::
     sleep, 1000
